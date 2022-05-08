@@ -1,17 +1,16 @@
-<header align="center">
+<div align="center">
 
   ![VollSolutions-Logo](./assets/voll-logo.png)
 
   # Teste desenvolvido para a posição de desenvolvedor FullStack na Voll Solutions.
-  ## Repositório dedicado à realização do teste proposto pela empresa Voll Solutions
-</header>
+  ### Repositório dedicado à realização do teste proposto pela empresa Voll Solutions
+</div>
 <br />
 <br />
-<main>
+<div>
   <div>
 
   ## Aplicando:
-  <hr />
 
   - Empacotamento da aplicação com Docker;
 
@@ -24,8 +23,6 @@
     - Desenvolvimento das interfaces com React.js;
     - Testes com a biblioteca React Testing Library;
     - Requisições da API com a biblioteca Axios
-  <br />
-  <br />
 
     ### Demais ferramentas:
 
@@ -44,4 +41,4 @@
   O projeto proposto consiste no desevolvimento frontend e backend de uma plataforma para controle de pontos/moedas com uma loja virtual. A aplicação possui 3 telas para usuários consumidores e administradores, que se comunicam com uma API Rest.
 
   </div>
-</main>
+</div>
