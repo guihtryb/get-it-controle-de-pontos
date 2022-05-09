@@ -1,8 +1,33 @@
+import { useContext } from 'react';
+import Context from '../context/Context';
+import { setDisplay, handleShowNewModalClick } from '../utilis';
+import CloseButton from './CloseButton';
+
+import '../styles/components/LoginModal.css';
+import { useHistory } from 'react-router-dom';
+
 const LoginModal = () => {
+  const {
+    setShowLoginModal,
+    showLoginModal,
+    setShowRegisterModal,
+  } = useContext(Context);
+
+  const history = useHistory();
+
   return (
-    <section className="login-modal-container">
-    <div data-testid="login-modal" className="login-modal">
-      <form>
+    <section
+      className="login-modal-container"
+      data-testid="login-modal-container"
+      style={{ display: setDisplay(showLoginModal).container }}
+    >
+    <div
+      data-testid="login-modal"
+      className="login-modal"
+      style={{ display: setDisplay(showLoginModal).box }}
+    >
+      <CloseButton setShowModal={setShowLoginModal} />
+      <form onSubmit={ (e) => e.preventDefault() }>
         <label htmlFor="login-email-input">
           Email:
           <input
@@ -19,8 +44,26 @@ const LoginModal = () => {
           type="password"
         />
         </label>
-        <button data-testid="login-submit-btn" type="submit">submit</button>
+        <button
+          data-testid="login-submit-btn"
+          type="submit"
+          onClick={() => history.push('/products')}
+        >
+          Entrar
+        </button>
       </form>
+      <hr />
+      <div className="login-go-to-register-container">
+        <p>
+          Não possui uma conta?
+          <span
+            data-testid="login-go-to-register"
+            onClick={ () => handleShowNewModalClick(setShowLoginModal, setShowRegisterModal) }
+          >
+            Registre-se.
+          </span>
+        </p>
+      </div>
     </div>
   </section>
   );
