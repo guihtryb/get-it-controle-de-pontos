@@ -1,10 +1,12 @@
-import './styles/App.css'
+import './styles/App.css';
+import Login from './pages/Login';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      My React App
-    </div>
+    <Switch>
+      <Route exact path='/' component={ Login } />
+    </Switch>
   );
 }
 
