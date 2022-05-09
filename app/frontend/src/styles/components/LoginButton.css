@@ -1,0 +1,18 @@
+.login-btn {
+  background-color: #392a42;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  grid-column: 3;
+  margin: auto;
+  padding: 8px 0;
+  transition: all ease 0.2s;
+  width: 100px;
+  font-weight: 700;
+}
+
+.login-btn:hover {
+  background-color: #fcba2e;
+  color: #000;
+}

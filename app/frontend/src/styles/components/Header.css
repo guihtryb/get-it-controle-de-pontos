@@ -1,0 +1,5 @@
+header {
+  background-color: #8f14e4;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
