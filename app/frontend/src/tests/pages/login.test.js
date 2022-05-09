@@ -32,6 +32,18 @@ describe('Tela de login', () => {
   });
   describe('Ao clicar no botão de login', () => {
     describe('deve abrir um modal que', () => {
+      it('possui um data-testid `login-modal-container`', () => {
+        renderWithRouter(<App />);
+
+        const loginBtn = screen.getByTestId(`login-btn`);
+
+        fireEvent.click(loginBtn);
+
+        const loginModalContainer = screen.getByTestId('login-modal-container');
+
+        expect(loginModalContainer).toBeInTheDocument();
+        expect(loginModalContainer).toHaveStyle('display: flex')
+      });
       it('possui um data-testid `login-modal`', () => {
         renderWithRouter(<App />);
 
@@ -42,6 +54,27 @@ describe('Tela de login', () => {
         const loginModal = screen.getByTestId('login-modal');
 
         expect(loginModal).toBeInTheDocument();
+        expect(loginModal).toHaveStyle('display: block')
+      });
+      it('possui um botão para fechar o modal com o data-testid `close`', () => {
+        renderWithRouter(<App />);
+
+        const loginBtn = screen.getByTestId(`login-btn`);
+
+        fireEvent.click(loginBtn);
+
+        const closeButton = screen.getByRole('button', {
+          name: 'X'
+        });
+
+        expect(closeButton).toBeInTheDocument();
+        expect(closeButton).toHaveAttribute('type', 'button');
+
+        fireEvent.click(closeButton);
+
+        const loginModal = screen.getByTestId('login-modal');
+
+        expect(loginModal).toHaveStyle('display: none')
       });
       it('possui um input de email com o data-testid `login-email-input`', () => {
         renderWithRouter(<App />);
@@ -92,6 +125,22 @@ describe('Tela de login', () => {
         expect(loginGoToRegister).toHaveTextContent(/registre-se/i);
       });
       describe('Possibilita o usuário registrar-se e, ao clicar em registre-se abre um modal que', () => {
+        it('possui um data-testid `register-modal-container`', () => {
+          renderWithRouter(<App />);
+  
+          const loginBtn = screen.getByTestId(`login-btn`);
+  
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          const registerModalContainer = screen.getByTestId('register-modal-container');
+
+          expect(registerModalContainer).toBeInTheDocument();
+          expect(registerModalContainer).toHaveStyle('display: flex');
+        });
         it('possui um data-testid `register-modal`', () => {
           renderWithRouter(<App />);
 
@@ -103,8 +152,10 @@ describe('Tela de login', () => {
 
           fireEvent.click(loginGoToRegister);
 
-          expect(screen.getByTestId(`register-modal`)).toBeInTheDocument();
-        });
+          const registerModal = screen.getByTestId('register-modal');
+
+          expect(registerModal).toHaveStyle('display: block')
+          });
         it('possui um input para nome completo com o data-testid `register-fullname-input`', () => {
           renderWithRouter(<App />);
 
@@ -157,7 +208,7 @@ describe('Tela de login', () => {
 
           expect(screen.getByTestId(`register-password-input`)).toBeInTheDocument();
         });
-        it('possui um input para nome completo com o data-testid `register-submit-btn`', () => {
+        it('possui um botão com o data-testid `register-submit-btn`', () => {
           renderWithRouter(<App />);
 
           const loginBtn = screen.getByTestId(`login-btn`);
@@ -169,6 +220,17 @@ describe('Tela de login', () => {
           fireEvent.click(loginGoToRegister);
 
           expect(screen.getByTestId(`register-submit-btn`)).toBeInTheDocument();
+          expect(screen.getByTestId(`register-submit-btn`)).toHaveAttribute('type', 'submit');
+        });
+        it('possibilita o usuário voltar a tela de login através do elemento `voltar`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          expect(screen.getByTestId('register-go-to-login')).toBeInTheDocument();
+          expect(screen.getByTestId('register-go-to-login')).toHaveTextContent(/voltar/i);
         });
       });
     });
