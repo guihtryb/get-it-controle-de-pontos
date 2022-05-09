@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+.typing-span {
+  animation: 
+    typing 2.7s steps(45, end),
+    blink-caret 0.75s step-end infinite;
+  border-right: 0.15em solid #fcba2e;
+  color: #fff;
+  font-family: 'Nunito';
+  font-size: 1.7rem;
+  letter-spacing: 0.09rem;
+  margin: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  grid-column: 1;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 35rem }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #fcba2e; }
+}
+
+@media (max-width : 780px) {
+  .typing-span {
+    animation: 
+      typing 2.7s steps(45, end),
+      blink-caret 0.75s step-end infinite;
+    border-right: 0.15em solid #fcba2e;
+    color: #fff;
+    font-family: 'Nunito';
+    font-size: 1.3rem;
+    letter-spacing: 0.09rem;
+    margin: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    grid-column: 1;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 27.5rem }
+  }
+}

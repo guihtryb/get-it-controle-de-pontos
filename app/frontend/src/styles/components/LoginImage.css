@@ -1,0 +1,9 @@
+.login-image {
+  display: flex;
+  grid-column: 2;
+  margin: auto;
+  width: 30rem;
+  height: 25rem;
+  border-radius: 5rem;
+  box-shadow: 12px 15px 10px 2px rgba(0, 0, 0, 0.6);
+}
