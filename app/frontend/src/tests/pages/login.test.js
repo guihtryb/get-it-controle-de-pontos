@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import App from '../../App';
-import renderWithRouter from './utils/renderWithRouter';
+import renderWithRouter from '../utils/renderWithRouter';
 
 describe('Tela de login', () => {
   describe('deve possuir um header que', () => {
@@ -27,6 +27,22 @@ describe('Tela de login', () => {
 
       expect(loginBtn).toBeInTheDocument();
       expect(loginBtn).toHaveTextContent('Login');
+    });
+  });
+  describe('Deve Possuir uma parte descritiva', () => {
+    it('que possui o atributo data-testid="login-main"', () => {
+      renderWithRouter(<App />);
+
+      const loginMain = screen.getByTestId('login-main');
+
+      expect(loginMain).toBeInTheDocument();
+    });
+    it('com um elemento que possui o atributo data-testid="typing-span"', () => {
+      renderWithRouter(<App />);
+
+      const typingSpan = screen.getByTestId('typing-span');
+
+      expect(typingSpan).toBeInTheDocument();
     });
   });
 });
