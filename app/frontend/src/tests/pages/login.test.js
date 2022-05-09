@@ -4,7 +4,7 @@ import App from '../../App';
 import renderWithRouter from '../utils/renderWithRouter';
 
 describe('Tela de login', () => {
-  describe('deve possuir um header que', () => {
+  describe('Deve possuir um header que', () => {
     it('possui um atributo data-testid igual a `get-it-header`', () => {
       renderWithRouter(<App />);
 
@@ -53,6 +53,7 @@ describe('Tela de login', () => {
         const emailInput = screen.getByTestId('login-email-input');
 
         expect(emailInput).toBeInTheDocument();
+        expect(emailInput).toHaveAttribute('type', 'email');
       });
       it('possui um input de password com o data-testid `login-password-input`', () => {
         renderWithRouter(<App />);
@@ -64,6 +65,7 @@ describe('Tela de login', () => {
         const passwordInput = screen.getByTestId('login-password-input');
 
         expect(passwordInput).toBeInTheDocument();
+        expect(passwordInput).toHaveAttribute('type', 'password');
       });
       it('possui um botão com o data-testid `login-submit-btn`', () => {
         renderWithRouter(<App />);
@@ -76,12 +78,100 @@ describe('Tela de login', () => {
 
         expect(loginSubmitBtn).toBeInTheDocument();
         expect(loginSubmitBtn).toHaveAttribute('type', 'submit');
-
       });
-      it('possui um link com o data-testid `login-go-to-register`', () => {
+      it('possui um elemento com o data-testid `login-go-to-register`', () => {
+        renderWithRouter(<App />);
 
+        const loginBtn = screen.getByTestId(`login-btn`);
+
+        fireEvent.click(loginBtn);
+
+        const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+        expect(loginGoToRegister).toBeInTheDocument();
+        expect(loginGoToRegister).toHaveTextContent(/registre-se/i);
       });
-    })
+      describe('Possibilita o usuário registrar-se e, ao clicar em registre-se abre um modal que', () => {
+        it('possui um data-testid `register-modal`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          expect(screen.getByTestId(`register-modal`)).toBeInTheDocument();
+        });
+        it('possui um input para nome completo com o data-testid `register-fullname-input`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          expect(screen.getByTestId(`register-fullname-input`)).toBeInTheDocument();
+        });
+        it('possui um input para nome de usuário com o data-testid `register-username-input`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          expect(screen.getByTestId(`register-username-input`)).toBeInTheDocument();
+        });
+        it('possui um input para de email com o data-testid `register-email-input`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          expect(screen.getByTestId(`register-email-input`)).toBeInTheDocument();
+        });
+        it('possui um input para senha com o data-testid `register-password-input`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          expect(screen.getByTestId(`register-password-input`)).toBeInTheDocument();
+        });
+        it('possui um input para nome completo com o data-testid `register-submit-btn`', () => {
+          renderWithRouter(<App />);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          fireEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          fireEvent.click(loginGoToRegister);
+
+          expect(screen.getByTestId(`register-submit-btn`)).toBeInTheDocument();
+        });
+      });
+    });
   });
   describe('Deve Possuir uma parte descritiva', () => {
     it('que possui o atributo data-testid="login-main"', () => {
