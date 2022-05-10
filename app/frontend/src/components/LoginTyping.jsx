@@ -1,9 +1,9 @@
-import '../styles/components/LoginTyping.css'
+import '../styles/components/LoginTyping.css';
 
 const LoginTyping = () => {
   return (
     <span data-testid="typing-span" className="typing-span">
-      Troque pontos por produtos exclusivos!
+      Troque <span className="span-points">pontos</span> por produtos exclusivos!
     </span>
   );
 };
