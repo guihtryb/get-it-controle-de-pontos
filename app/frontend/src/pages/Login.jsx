@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import LoginImage from "../components/LoginImage";
 import LoginModal from "../components/LoginModal";
 import LoginTyping from "../components/LoginTyping";
+import RegisterModal from "../components/RegisterModal";
 import '../styles/pages/Login.css'
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
         <LoginImage />
       </main>
       <LoginModal />
+      <RegisterModal />
     </>
   );
 };
