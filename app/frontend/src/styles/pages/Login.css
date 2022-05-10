@@ -1,16 +1,16 @@
 main[data-testid^="login"] {
+  background: linear-gradient(to left top, #fcba2e,#8f14e4);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 89.3vh;
-  background: linear-gradient(to left top, #fcba2e,#8f14e4);
-  padding: 15px 0;
+  min-height: 88.88vh;
+  padding: 15px 10px;
 }
 
-@media (max-width : 780px) {
+@media (max-width : 1140px) {
   main[data-testid^="login"] {
-    display: flex;
     align-items: center;
-    justify-content: space-around;
+    display: flex;
     flex-direction: column;
+    justify-content: space-around;
   }
 }
