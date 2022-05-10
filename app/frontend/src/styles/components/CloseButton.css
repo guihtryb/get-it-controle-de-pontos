@@ -1,0 +1,15 @@
+.close {
+  background: #ad0453;
+  border-radius: 50%;
+  border: 6px solid white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 700;
+  height: 65px;
+  position: absolute;
+  right: -15px;
+  top: -30px;
+  width: 65px;
+}

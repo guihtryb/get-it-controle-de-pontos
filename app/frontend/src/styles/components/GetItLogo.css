@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
+.get-it-logo {
+  align-items: flex-end;
+  color: #fff;
+  display: flex;
+  font-family: 'Caveat';
+  font-size: 2rem;
+  justify-content: center;
+  padding: 15px 0;
+}

@@ -1,0 +1,16 @@
+.login-image {
+  border-radius: 5rem;
+  box-shadow: 12px 15px 10px 2px rgba(0, 0, 0, 0.6);
+  display: flex;
+  grid-column: 2;
+  height: 25rem;
+  margin: auto;
+  width: 32rem;
+}
+
+@media (max-width: 590px) {
+  .login-image {
+    max-width: 92vw;
+    min-width: 23rem;
+  }
+}
