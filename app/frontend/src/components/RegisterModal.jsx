@@ -1,55 +1,55 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
 import { handleShowNewModalClick, setDisplay } from '../utilis';
 import CloseButton from './CloseButton';
+import { Redirect } from 'react-router-dom';
 
 import '../styles/components/RegisterModal.css';
-import { Redirect } from 'react-router-dom';
+import { requestRegister } from '../services/requests';
 
 
 
 const RegisterModal = () => {
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [failedRegistering, setFailedRegistering] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const {
     setShowRegisterModal,
     showRegisterModal,
     setShowLoginModal,
   } = useContext(Context);
 
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false);
 
-  const registerNewUser = async (rota, data) => {
-    console.log(
-      `usuario registrado com método POST na rota ${rota}`,
-      `--------------------------------------------------`,
-      `Informações de novo usuário:
-        Nome Completo: ${data.fullName}
-        username: ${data.username}
-        Email: ${data.email}
-      `
-    );
-  }
-  
+
+  useEffect(() => {
+    setFailedRegistering(false);
+  }, [fullName, username, email, password]);
+
+
   const register = async (e) => {
     e.preventDefault();
 
     try {
-    const newUserData = {
-      fullName,
-      username,
-      email,
-      password
-    }
-  
-    const newUser /* { token, newUserData } */ = await registerNewUser('/users', newUserData);
+      const newUserData = [
+        fullName,
+        username,
+        email,
+        password
+      ];
 
-    localStorage.setItem('user', newUser);
-    setIsRegistered(true);
+      const newUser /* { token, newUserData } */ = await requestRegister(...newUserData);
+
+      localStorage.setItem('user', JSON.stringify(newUser));
+
+      setIsRegistered(true);
     } catch (error) {
-      setIsRegistered(false);
+      setFailedRegistering(true);
+      setErrorMessage(error);
     }
   };
 
@@ -78,14 +78,14 @@ const RegisterModal = () => {
             onChange={({ target: {value }}) => setFullName(value)}
           />
         </label>
-        <label htmlFor="register-fullname-input">
+        <label htmlFor="register-username-input">
           Username:
           <input
             data-testid="register-username-input"
             id="register-username-input"
             type="text"
             value={username}
-            onChange={({ target: {value }}) => setUsername(value)}
+            onChange={({ target: { value }}) => setUsername(value)}
           />
         </label>
         <label htmlFor="register-email-input">
@@ -108,6 +108,19 @@ const RegisterModal = () => {
           onChange={({ target: { value }}) => setPassword(value)}
         />
         </label>
+        {
+          (failedRegistering)
+            ? (
+              <p
+                data-testid="register-error-message"
+                className="register-error-message"
+              >
+                {
+                  (`${errorMessage}`).replace('Error:', '')
+                }
+              </p>
+            ) : null
+        }
         <button
           data-testid="register-submit-btn"
           type="submit"

@@ -1,43 +1,38 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
 import { setDisplay, handleShowNewModalClick } from '../utilis';
 import CloseButton from './CloseButton';
 
 import '../styles/components/LoginModal.css';
 import { Redirect } from 'react-router-dom';
+import {requestLogin} from '../services/requests';
 
 const LoginModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
+  const [failedLogin, setFailedLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const sendLogin = async (rota, data) => {
-    console.log(
-      `usuario logado com método POST na rota ${rota}`,
-      `--------------------------------------------------`,
-      `Informações do usuário:
-        Email: ${data.email}
-      `
-    );
-  }
-  
   const login = async (e) => {
     e.preventDefault();
 
     try {
-      const userData = {
-        email,
-        password
-      }
+      const { token, user } = await requestLogin(email, password, setFailedLogin);
 
-      const user /* { token, userData } */ = await sendLogin('/login', userData);
+      localStorage.setItem('user', JSON.stringify({ token, user }));
 
-      localStorage.setItem('user', user);
       setIsLogged(true);
     } catch (error) {
-      setIsLogged(false);
+      setFailedLogin(true);
+
+      setErrorMessage(error);
     }
   };
+
+  useEffect(() => {
+    setFailedLogin(false);
+  }, [email, password]);
 
   const {
     setShowLoginModal,
@@ -80,6 +75,19 @@ const LoginModal = () => {
             onChange={({ target: { value } }) => setPassword(value)}
         />
         </label>
+        {
+          (failedLogin)
+            ? (
+              <p
+                data-testid="login-error-message"
+                className="login-error-message"
+              >
+                {
+                  (`${errorMessage}`).replace('Error:', '')
+                }
+              </p>
+            ) : null
+        }
         <button
           data-testid="login-submit-btn"
           type="submit"
