@@ -1,7 +1,10 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import App from '../../App';
-import renderWithRouter from '../utils/renderWithRouter';
+import renderWithRouter from '../helper/renderWithRouter';
+import { invalidUser, newUser, users } from '../mocks/user';
+import userEvent from '@testing-library/user-event';
+let service =  require('../../services/requests');
 
 describe('Tela de login', () => {
   describe('Deve possuir um header que', () => {
@@ -32,12 +35,13 @@ describe('Tela de login', () => {
   });
   describe('Ao clicar no botão de login', () => {
     describe('deve abrir um modal que', () => {
+      afterEach(() => jest.clearAllMocks());
       it('possui um data-testid `login-modal-container`', () => {
         renderWithRouter(<App />);
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const loginModalContainer = screen.getByTestId('login-modal-container');
 
@@ -49,7 +53,7 @@ describe('Tela de login', () => {
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const loginModal = screen.getByTestId('login-modal');
 
@@ -61,7 +65,7 @@ describe('Tela de login', () => {
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const closeButton = screen.getByRole('button', {
           name: 'X'
@@ -70,7 +74,7 @@ describe('Tela de login', () => {
         expect(closeButton).toBeInTheDocument();
         expect(closeButton).toHaveAttribute('type', 'button');
 
-        fireEvent.click(closeButton);
+        userEvent.click(closeButton);
 
         const loginModal = screen.getByTestId('login-modal');
 
@@ -81,7 +85,7 @@ describe('Tela de login', () => {
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const emailInput = screen.getByTestId('login-email-input');
 
@@ -93,7 +97,7 @@ describe('Tela de login', () => {
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const passwordInput = screen.getByTestId('login-password-input');
 
@@ -105,19 +109,64 @@ describe('Tela de login', () => {
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const loginSubmitBtn = screen.getByTestId('login-submit-btn');
 
         expect(loginSubmitBtn).toBeInTheDocument();
         expect(loginSubmitBtn).toHaveAttribute('type', 'submit');
       });
+      it('retorna uma mensagem de erro caso o login seja inválido`', async () => {
+        renderWithRouter(<App />);
+
+        jest.spyOn(service, 'requestLogin').mockRejectedValue(new Error('Senha ou E-mail incorretos!'));
+
+        const loginBtn = screen.getByTestId(`login-btn`);
+
+        userEvent.click(loginBtn);
+
+        const loginEmailInput = screen.getByTestId('login-email-input');
+        const loginPasswordInput = screen.getByTestId('login-password-input');
+        const loginSubmitBtn = screen.getByTestId('login-submit-btn');
+
+        userEvent.type(loginEmailInput, invalidUser.email);
+        userEvent.type(loginPasswordInput, invalidUser.password);
+
+        await waitFor(async () => {
+          await userEvent.click(loginSubmitBtn);
+        });
+
+        expect(await screen.findByTestId('login-error-message')).toBeInTheDocument();
+      });
+      it('permite o usuário realizar login caso dados de input sejam válidos`', async () => {
+        renderWithRouter(<App />);
+
+        jest.spyOn(service, 'requestLogin').mockResolvedValue(users[0].fullName, users[0].email);
+
+        const loginBtn = screen.getByTestId(`login-btn`);
+
+        userEvent.click(loginBtn);
+
+        const loginEmailInput = screen.getByTestId('login-email-input');
+        const loginPasswordInput = screen.getByTestId('login-password-input');
+        const loginSubmitBtn = screen.getByTestId('login-submit-btn');
+
+        userEvent.type(loginEmailInput, users[0].email);
+        userEvent.type(loginPasswordInput, users[0].password);
+
+        await waitFor(async () => {
+          await userEvent.click(loginSubmitBtn);
+        });
+
+        expect(screen.queryByTestId('login-error-message')).not.toBeInTheDocument();
+        expect(screen.queryByText(/por favor, tente novamente./i)).not.toBeInTheDocument();
+      });
       it('possui um elemento com o data-testid `login-go-to-register`', () => {
         renderWithRouter(<App />);
 
         const loginBtn = screen.getByTestId(`login-btn`);
 
-        fireEvent.click(loginBtn);
+        userEvent.click(loginBtn);
 
         const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
@@ -125,16 +174,18 @@ describe('Tela de login', () => {
         expect(loginGoToRegister).toHaveTextContent(/registre-se/i);
       });
       describe('Possibilita o usuário registrar-se e, ao clicar em registre-se abre um modal que', () => {
+        afterEach(() => jest.clearAllMocks());
+
         it('possui um data-testid `register-modal-container`', () => {
           renderWithRouter(<App />);
   
           const loginBtn = screen.getByTestId(`login-btn`);
   
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           const registerModalContainer = screen.getByTestId('register-modal-container');
 
@@ -146,11 +197,11 @@ describe('Tela de login', () => {
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           const registerModal = screen.getByTestId('register-modal');
 
@@ -161,11 +212,11 @@ describe('Tela de login', () => {
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           expect(screen.getByTestId(`register-fullname-input`)).toBeInTheDocument();
         });
@@ -174,24 +225,24 @@ describe('Tela de login', () => {
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           expect(screen.getByTestId(`register-username-input`)).toBeInTheDocument();
         });
-        it('possui um input para de email com o data-testid `register-email-input`', () => {
+        it('possui um input para email com o data-testid `register-email-input`', () => {
           renderWithRouter(<App />);
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           expect(screen.getByTestId(`register-email-input`)).toBeInTheDocument();
         });
@@ -200,11 +251,11 @@ describe('Tela de login', () => {
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           expect(screen.getByTestId(`register-password-input`)).toBeInTheDocument();
         });
@@ -213,21 +264,82 @@ describe('Tela de login', () => {
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
 
-          fireEvent.click(loginGoToRegister);
+          userEvent.click(loginGoToRegister);
 
           expect(screen.getByTestId(`register-submit-btn`)).toBeInTheDocument();
           expect(screen.getByTestId(`register-submit-btn`)).toHaveAttribute('type', 'submit');
+        });
+        it('retorna uma mensagem de erro caso o registro seja inválido`', async () => {
+          renderWithRouter(<App />);
+
+          jest.spyOn(service, 'requestRegister').mockRejectedValue(new Error('Este e-mail já possui uma conta!'));
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+  
+          userEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          userEvent.click(loginGoToRegister);
+
+          const registerFullNameInput = screen.getByTestId('register-fullname-input');
+          const registerUsernameInput = screen.getByTestId('register-username-input');
+          const registerEmailInput = screen.getByTestId('register-email-input');
+          const registerPasswordInput = screen.getByTestId('register-password-input');
+          const registerSubmitBtn = screen.getByTestId('register-submit-btn');
+
+          userEvent.type(registerFullNameInput, 'Jhon Doe');
+          userEvent.type(registerUsernameInput, 'JhonDoe_01');
+          userEvent.type(registerEmailInput, users[0].email); // Email já cadastrado
+          userEvent.type(registerPasswordInput, 'superSecret');
+          userEvent.click(registerSubmitBtn);
+
+          await waitFor(async () => {
+            await userEvent.click(registerSubmitBtn);
+          });
+
+          expect(await screen.findByTestId('register-error-message')).toBeInTheDocument();
+        });
+        it('realiza o registro corretamente caso os inputs sejam válidos`', async () => {
+          renderWithRouter(<App />);
+
+          jest.spyOn(service, 'requestRegister').mockResolvedValue(newUser);
+
+          const loginBtn = screen.getByTestId(`login-btn`);
+
+          userEvent.click(loginBtn);
+
+          const loginGoToRegister = screen.getByTestId('login-go-to-register');
+
+          userEvent.click(loginGoToRegister);
+
+          const registerFullNameInput = screen.getByTestId('register-fullname-input');
+          const registerUsernameInput = screen.getByTestId('register-username-input');
+          const registerEmailInput = screen.getByTestId('register-email-input');
+          const registerPasswordInput = screen.getByTestId('register-password-input');
+          const registerSubmitBtn = screen.getByTestId('register-submit-btn');
+
+          userEvent.type(registerFullNameInput, 'John Doe');
+          userEvent.type(registerUsernameInput, 'JohnDoe_01');
+          userEvent.type(registerEmailInput, 'johndoe02@email.com');
+          userEvent.type(registerPasswordInput, 'super secret');
+
+          await waitFor(async () => {
+            await userEvent.click(registerSubmitBtn);
+          });
+
+          expect(screen.queryByTestId('register-error-message')).not.toBeInTheDocument();
         });
         it('possibilita o usuário voltar a tela de login através do elemento `voltar`', () => {
           renderWithRouter(<App />);
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
-          fireEvent.click(loginBtn);
+          userEvent.click(loginBtn);
 
           expect(screen.getByTestId('register-go-to-login')).toBeInTheDocument();
           expect(screen.getByTestId('register-go-to-login')).toHaveTextContent(/voltar/i);
