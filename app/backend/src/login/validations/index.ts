@@ -1,4 +1,4 @@
-import invalidEmail from './email';
+import { invalidEmail } from "../../utils";
 
 const invalidInputType = (input: string, type: string): boolean => typeof input !== type;
 
