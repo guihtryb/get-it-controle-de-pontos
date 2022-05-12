@@ -9,7 +9,7 @@ class Products extends Model {
   pricePoints!: number;
   image!: string;
   orderId!: number;
-  selled!: boolean;
+  sold!: boolean;
 }
 
 Products.init({
@@ -39,7 +39,7 @@ Products.init({
     type: INTEGER,
     allowNull: true,
   },
-  selled: {
+  sold: {
     type: BOOLEAN,
     allowNull: false,
   },

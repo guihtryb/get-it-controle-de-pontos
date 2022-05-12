@@ -31,6 +31,10 @@ Users.init({
     type: STRING(40),
     allowNull: false,
   },
+  password: {
+    type: STRING,
+    allowNull: false,
+  },
   role: {
     type: STRING,
     allowNull: false,
