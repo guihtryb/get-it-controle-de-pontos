@@ -57,6 +57,12 @@
   transition: all ease .2s;
 }
 
+.login-error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 .login-modal button[type="submit"]:hover {
   background: #ffb618;
 }
