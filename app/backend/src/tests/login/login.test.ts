@@ -3,6 +3,7 @@ import * as chai from 'chai';
 import app from '../../app';
 import chaiHttp = require('chai-http');
 
+import * as bcrypt from '../../bcrypt';
 import Users from '../../database/models/Users'
 import { Response } from 'superagent';
 import { StatusCode } from '../../enums';
@@ -25,7 +26,10 @@ describe('Testando rota POST /login', () => {
       sinon.stub(Users, "findOne")
         .resolves(user as Users);
 
-      chaiHttpResponse = await chai
+      sinon.stub(bcrypt, "compare")
+        .resolves(true);
+
+        chaiHttpResponse = await chai
         .request(app)
         .post('/login')
         .send({ email: user.email, password: user.password })
