@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
-import { setDisplay, handleShowNewModalClick } from '../utilis';
-import CloseButton from './CloseButton';
+import { Redirect } from 'react-router-dom';
 
 import '../styles/components/LoginModal.css';
-import { Redirect } from 'react-router-dom';
-import {requestLogin} from '../services/requests';
+import errorMessages from '../services/errorMessages';
+import CloseButton from './CloseButton';
+import { setDisplay, handleShowNewModalClick } from '../utilis';
+import { requestLogin } from '../services/requests';
 
 const LoginModal = () => {
   const [email, setEmail] = useState('');
@@ -18,15 +19,21 @@ const LoginModal = () => {
     e.preventDefault();
 
     try {
-      const { token, user } = await requestLogin(email, password, setFailedLogin);
+      const endpoint = '/login'
 
-      localStorage.setItem('user', JSON.stringify({ token, user }));
+      const { user, token } = await requestLogin(endpoint, { email, password });
+
+      localStorage.setItem('user', JSON.stringify({ user, token }));
 
       setIsLogged(true);
     } catch (error) {
+      const errorCode = error.toString().slice(-3);
+
+      const message = errorMessages[errorCode];
+
       setFailedLogin(true);
 
-      setErrorMessage(error);
+      setErrorMessage(message);
     }
   };
 
@@ -83,7 +90,7 @@ const LoginModal = () => {
                 className="login-error-message"
               >
                 {
-                  (`${errorMessage}`).replace('Error:', '')
+                  `${errorMessage}`
                 }
               </p>
             ) : null

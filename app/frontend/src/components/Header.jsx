@@ -1,5 +1,5 @@
-import { GetItLogo } from "./GetItLogo";
-import { LoginButton } from "./LoginButton";
+import GetItLogo from "./GetItLogo";
+import LoginButton from "./LoginButton";
 import '../styles/components/Header.css';
 
 const Header = () => {

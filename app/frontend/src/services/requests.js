@@ -1,27 +1,14 @@
+import axios from 'axios';
 import users from "../mocks/users";
 
-export const requestLogin = async (email, password) => {
-  const inputs = [email, password];
+const api = axios.create({
+  baseURL: `http://localhost:${process.env.REACT_APP_API_PORT || '3001'}`,
+});
 
-  if (inputs.some((input) => !input)) {
-    throw new Error('É necessário preencher todos os campos!');
-  }
+export const requestLogin = async (endpoint, body) => {
+  const { data } = await api.post(endpoint, body);
 
-  const validUser = users
-    .find((user) => user.email === email && user.password === password);
-
-  if (!validUser) {
-    throw new Error('Senha ou email incorretos! Por favor, tente novamente.');
-  }
-
-  delete validUser.password; /* wip - afim de simulação do retorno da API*/
-
-  const simulatedAnswer = {
-    token: `ztokensu7${validUser.userName}x3ef`,
-    user: validUser,
-  };
-
-  return simulatedAnswer;
+  return data;
 };
 
 export const requestRegister = async (

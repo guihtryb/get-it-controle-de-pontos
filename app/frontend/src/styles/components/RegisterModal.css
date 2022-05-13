@@ -1,6 +1,7 @@
 .register-modal-container {
   align-items: center;
   background: rgba(0, 0, 0, 0.6);
+  display: none;
   height: 100vh;
   justify-content: center;
   left: 0;
@@ -17,6 +18,7 @@
   border: 10px solid #ad0453;
   box-shadow: 0 0 0 10px white;
   box-sizing: border-box;
+  display: none;
   height: fit-content;
   margin: auto;
   padding: 40px;
@@ -57,6 +59,12 @@
   transition: all ease .2s;
 }
 
+.register-error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 .register-modal button[type="submit"]:hover {
   background: #ffb618;
 }
@@ -91,4 +99,23 @@
   font-weight: 700;
   margin-left: .5rem;
   text-decoration: underline;
+}
+
+@media (max-height : 610px ) {
+  .register-modal {
+    width: 80vw;
+    min-height: 50vh;
+    padding-top: 25px;
+    padding-bottom: 20px;
+  }
+
+  .register-modal label {
+    margin: 0.5rem 0;
+    padding: 2px 0;
+  }
+
+  .register-modal button[type="submit"] {
+    margin-top: 1rem;
+    padding: 0.7rem 2rem;
+  }
 }
