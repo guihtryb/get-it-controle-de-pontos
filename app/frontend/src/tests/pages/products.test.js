@@ -5,12 +5,14 @@ import ProductsUserView from '../../pages/ProductsUserView';
 import userEvent from '@testing-library/user-event';
 import { users } from '../mocks/user'
 let username =  require('../../utilis/getUsename');
+let userPoints =  require('../../utilis/getUserPoints');
 
 describe('Testando página ProductsUserView', () => {
   afterEach(() => jest.clearAllMocks());
   describe('Deve conter um header que', () => {
     beforeEach(() => {
       jest.spyOn(username, 'getUsername').mockReturnThis(users[0].userName);
+      jest.spyOn(userPoints, 'getUserPoints').mockReturnThis(users[0].points);
     });  
     it('possui um atributo data-testid igual a `get-it-header`', () => {
       renderWithRouter(<ProductsUserView />);
