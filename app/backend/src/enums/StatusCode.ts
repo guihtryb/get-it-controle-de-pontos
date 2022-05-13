@@ -4,7 +4,8 @@ enum StatusCode {
   BAD_REQUEST = 400,
   UNAUTHORIZED,
   NOT_FOUND = 404,
-  UNEXPECTED_ERROR = 500,
+  CONFLICT = 409,
+  UNEXPECTED_ERROR,
 }
 
 export default StatusCode;
