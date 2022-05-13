@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
+
 import { handleShowNewModalClick, setDisplay } from '../utilis';
 import CloseButton from './CloseButton';
-import { Redirect } from 'react-router-dom';
-
 import '../styles/components/RegisterModal.css';
 import { requestRegister } from '../services/requests';
-
+import invalidInput from '../validations/register';
+import errorMessages from '../validations/errorMessages';
 
 
 const RegisterModal = () => {
@@ -24,36 +24,45 @@ const RegisterModal = () => {
     setShowLoginModal,
   } = useContext(Context);
 
-
-
   useEffect(() => {
     setFailedRegistering(false);
+    setIsRegistered(false);
   }, [fullName, username, email, password]);
-
 
   const register = async (e) => {
     e.preventDefault();
 
+    const inputs = [fullName, username, email, password];
+
+    const error = invalidInput(...inputs);
+
+    if (error) {
+      setFailedRegistering(true);
+
+      setErrorMessage(error);
+
+      return;
+    };
+  
     try {
-      const newUserData = [
-        fullName,
-        username,
-        email,
-        password
-      ];
+      const endpoint = '/user';
 
-      const newUser /* { token, newUserData } */ = await requestRegister(...newUserData);
-
-      localStorage.setItem('user', JSON.stringify(newUser));
+      await requestRegister(endpoint, { fullName, username, email, password });
 
       setIsRegistered(true);
-    } catch (error) {
+    } catch (err) {
+      const errorCode = err.toString().slice(-3);
+
+      const error = errorMessages[errorCode] 
+      ? errorMessages[errorCode] : errorMessages['defaultMessage'];
+
       setFailedRegistering(true);
+
       setErrorMessage(error);
     }
   };
 
-  if (isRegistered) return <Redirect to="/products" />
+  const sucessRegisterMessage = `Usuário cadastrado! Volte e faça login normalmente.`;
 
   return (
     <section
@@ -118,6 +127,17 @@ const RegisterModal = () => {
                 {
                   (`${errorMessage}`).replace('Error:', '')
                 }
+              </p>
+            ) : null
+        }
+        {
+          (isRegistered)
+            ? (
+              <p
+                data-testid='register-success-message'
+                className='register-success-message'
+              >
+                { sucessRegisterMessage }
               </p>
             ) : null
         }
