@@ -3,8 +3,7 @@ import Login from './pages/Login';
 import { Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import Provider from './context/Provider';
-
-const Products = () => (<h1>Products</h1>)
+import ProductsUserView from './pages/ProductsUserView';
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="/login" />
         <Route exact path='/login' component={ Login } />
-        <Route exact path='/products' component={ Products } />
+        <Route exact path='/user/products' component={ ProductsUserView } />
       </Switch>
     </Provider>
   );
