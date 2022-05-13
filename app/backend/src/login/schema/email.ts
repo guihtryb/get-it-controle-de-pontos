@@ -1,6 +1,6 @@
 import { StatusCode, ErrorMessage } from '../../enums';
 import { SchemaResponse } from '../../interfaces';
-import { invalidEmail, inputNotFilled } from '../validations';
+import { invalidEmail, inputNotFilled } from '../../validations';
 
 const emailSchema = (email = ''): SchemaResponse[] => [
   {

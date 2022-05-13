@@ -5,7 +5,7 @@ import {
   invalidInputMinLength,
   invalidInputType,
   inputNotFilled,
-} from '../validations';
+} from '../../validations';
 
 const passwordSchema = (password = ''): SchemaResponse[] => [
   {
