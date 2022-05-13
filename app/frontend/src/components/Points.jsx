@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/components/Points.css'
+import { getUserPoints } from '../utilis';
 
 const Points = () => {
   return (
@@ -7,7 +8,7 @@ const Points = () => {
       className="user-points-container"
     >
       <span>Seus pontos:</span>
-      <span data-testid="user-points">pontos</span>
+      <span data-testid="user-points">{getUserPoints()}</span>
     </div>
   );
 };
