@@ -3,10 +3,15 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import ProductsUserView from '../../pages/ProductsUserView';
 import userEvent from '@testing-library/user-event';
-
+import { users } from '../mocks/user'
+let username =  require('../../utilis/getUsename');
 
 describe('Testando página ProductsUserView', () => {
+  afterEach(() => jest.clearAllMocks());
   describe('Deve conter um header que', () => {
+    beforeEach(() => {
+      jest.spyOn(username, 'getUsername').mockReturnThis(users[0].userName);
+    });  
     it('possui um atributo data-testid igual a `get-it-header`', () => {
       renderWithRouter(<ProductsUserView />);
 
