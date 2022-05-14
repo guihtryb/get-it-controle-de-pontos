@@ -8,6 +8,7 @@ export const users = [
     fullName: 'Guilherme Heráclito Viana',
     userName: 'Guih01',
     email: 'guilhermehviana01@gmail.com',
+    points: 600,
     password: 'Secret123',
   },
 ];

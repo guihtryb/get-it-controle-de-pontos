@@ -3,7 +3,7 @@ import Context from '../context/Context';
 import { Redirect } from 'react-router-dom';
 
 import '../styles/components/LoginModal.css';
-import errorMessages from '../services/errorMessages';
+import errorMessages from '../validations/errorMessages';
 import CloseButton from './CloseButton';
 import { setDisplay, handleShowNewModalClick } from '../utilis';
 import { requestLogin } from '../services/requests';
@@ -26,14 +26,15 @@ const LoginModal = () => {
       localStorage.setItem('user', JSON.stringify({ user, token }));
 
       setIsLogged(true);
-    } catch (error) {
-      const errorCode = error.toString().slice(-3);
+    } catch (err) {
+      const errorCode = err.toString().slice(-3);
 
-      const message = errorMessages[errorCode];
+      const error = errorMessages[errorCode] 
+        ? errorMessages[errorCode] : errorMessages['defaultMessage'];
 
       setFailedLogin(true);
 
-      setErrorMessage(message);
+      setErrorMessage(error);
     }
   };
 

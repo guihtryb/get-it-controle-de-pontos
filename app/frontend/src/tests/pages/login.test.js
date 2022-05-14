@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import App from '../../App';
 import renderWithRouter from '../helper/renderWithRouter';
-import { invalidUser, newUser, users } from '../mocks/user';
+import { invalidUser,  users } from '../mocks/user';
 import userEvent from '@testing-library/user-event';
 let service =  require('../../services/requests');
 
@@ -307,7 +307,7 @@ describe('Tela de login', () => {
         it('realiza o registro corretamente caso os inputs sejam válidos`', async () => {
           renderWithRouter(<App />);
 
-          jest.spyOn(service, 'requestRegister').mockResolvedValue(newUser);
+          jest.spyOn(service, 'requestRegister').mockResolvedValue(true);
 
           const loginBtn = screen.getByTestId(`login-btn`);
 
@@ -328,11 +328,10 @@ describe('Tela de login', () => {
           userEvent.type(registerEmailInput, 'johndoe02@email.com');
           userEvent.type(registerPasswordInput, 'super secret');
 
-          await waitFor(async () => {
-            await userEvent.click(registerSubmitBtn);
-          });
+          await waitFor(async () => await userEvent.click(registerSubmitBtn) );
 
           expect(screen.queryByTestId('register-error-message')).not.toBeInTheDocument();
+          expect(await screen.findByTestId('register-success-message')).toBeInTheDocument();
         });
         it('possibilita o usuário voltar a tela de login através do elemento `voltar`', () => {
           renderWithRouter(<App />);
