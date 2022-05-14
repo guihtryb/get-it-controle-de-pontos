@@ -1,0 +1,92 @@
+.product-card {
+  align-items: center;
+  border-radius: 1.5rem;
+  border: 2px solid rgb(230, 224, 224);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  padding: 20px 0;
+  transition: all ease .4s;
+  width: 22rem;
+  background-color: #c5c2d6;
+}
+
+.product-card:hover {
+  transform: translate(0, -10px);
+}
+
+.product-card hr {
+  width: 85%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.product-img {
+  border-radius: 2rem;
+  height: 10rem;
+  max-width: 22rem;
+}
+
+.product-title {
+  font-family: 'Nunito';
+}
+
+.product-price-points {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #8f14e4;
+  margin: .3rem 0;
+}
+
+.get-it-points-btn, .buy-btn {
+  background-color: #fcba2e;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: .8rem;
+  padding: 6px 0;
+  transition: all ease .3s;
+  width: 80%;
+}
+
+.buy-btn {
+  margin-bottom: 1rem;
+  background-color: #8f14e4;
+  color: #FFF;
+}
+
+.tooltip {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+  color: white;
+  font-family: 'Nunito';
+  font-size: 0.875rem;
+  font-weight: 700;
+  max-width: 13rem;
+  padding: 10px;
+  position: absolute;
+  z-index: 100;
+  text-align: center;
+  left: 4.2rem;
+  top: .7rem;
+  transition: all ease .4s;
+  animation: showToolTip 0.3s;
+}
+
+@keyframes showToolTip {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -1.2rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.able-to-get-true:hover, .buy-btn:hover {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
