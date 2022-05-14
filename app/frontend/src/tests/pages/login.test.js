@@ -6,7 +6,7 @@ import { invalidUser,  users } from '../mocks/user';
 import userEvent from '@testing-library/user-event';
 let service =  require('../../services/requests');
 
-describe('Tela de login', () => {
+describe('Testando página Login', () => {
   describe('Deve possuir um header que', () => {
     it('possui um atributo data-testid igual a `get-it-header`', () => {
       renderWithRouter(<App />);
