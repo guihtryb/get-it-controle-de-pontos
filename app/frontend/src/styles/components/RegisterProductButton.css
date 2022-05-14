@@ -1,0 +1,22 @@
+.new-product-btn {
+  align-items: center;
+  background-color: #221c42;
+  border-radius: 6px;
+  border: none;
+  color: #836e40;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Nunito';
+  font-size: 0.9rem;
+  grid-column: 4;
+  justify-content: center;
+  margin: auto;
+  padding: .4rem .9rem;
+  text-align: center;
+  transition: all ease .2s;
+}
+
+.new-product-btn:hover {
+  background-color: #261f50;
+  color: #fcba2e;
+}
