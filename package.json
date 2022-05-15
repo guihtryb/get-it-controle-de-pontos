@@ -4,7 +4,9 @@
   "description": "Projeto desenvolvido para o teste da Voll Solutions",
   "main": "index.js",
   "scripts": {
-    "test": "jest -i --forceExit --verbose"
+    "test": "jest -i --forceExit --verbose",
+    "compose:up": "(cd app && docker-compose up -d --build)",
+    "compose:down": "(cd app && docker-compose down --remove-orphans)"
   },
   "repository": {
     "type": "git",
