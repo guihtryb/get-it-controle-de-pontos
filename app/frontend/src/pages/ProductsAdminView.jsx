@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import DeleteProductModal from '../components/DeleteProductModal';
+import EditProductModal from '../components/EditProductModal';
 import GetItLogo from '../components/GetItLogo';
 import Header from '../components/Header';
 import LogOutButton from '../components/LogOutButton';
@@ -7,10 +9,13 @@ import ProductsPageTitle from '../components/ProductsPageTitle';
 import RegisterProductButton from '../components/RegisterProductButton';
 import RegisterProductModal from '../components/RegisterProductModal';
 import Username from '../components/Username';
-import products from '../mocks/products';
+import Context from '../context/Context';
 
 function ProductsAdminView() {
   const adminViewTitle = 'Produtos cadastrados:';
+
+  const { products } = useContext(Context);
+
   return (
     <>
       <Header
@@ -37,6 +42,8 @@ function ProductsAdminView() {
         </section>
       </main>
       <RegisterProductModal />
+      <DeleteProductModal />
+      <EditProductModal />
     </>
   );
 }
