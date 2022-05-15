@@ -5,6 +5,7 @@
   color: #fff;
   display: flex;
   font-family: 'Caveat';
+  grid-column: 1;
   font-size: 2rem;
   justify-content: center;
   padding: 15px 0;

@@ -100,11 +100,12 @@
   margin-top: 1.5rem;
 }
 
-.register-go-to-login-container span {
+.register-go-to-login-container button {
   cursor: pointer;
   font-weight: 700;
   margin-left: .5rem;
   text-decoration: underline;
+  border: none;
 }
 
 @media (max-height : 610px ) {

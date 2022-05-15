@@ -1,8 +1,8 @@
 .delete-btn {
-  border: none;
   background-color: #c5c2d6;
-  margin: 0 0.6rem;
+  border: none;
   cursor: pointer;
+  margin: 0 0.6rem;
   transition: all ease .3s;
 }
 

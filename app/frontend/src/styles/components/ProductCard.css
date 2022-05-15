@@ -90,3 +90,12 @@
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
 }
 
+.update-btns-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: .6rem;
+}
+

@@ -1,5 +1,7 @@
-.products-userview-title {
+.products-userview-title, .products-adminview-title {
   font-family: 'Nunito';
-  margin-top: 3rem;
-  padding: 20px;
+  margin-bottom: 2rem;
+  padding: 0 30px;
+  padding-top: 60px;
+  padding-bottom: 15px;
 }

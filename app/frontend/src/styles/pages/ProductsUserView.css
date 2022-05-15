@@ -1,0 +1,26 @@
+.products-main {
+  background-color: #eceaf3;
+  height: 100%;
+  min-height: 88.7vh;
+}
+
+.products-section {
+  margin: auto;
+  display: flex;
+  width: 90vw;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width : 1560px){
+  .products-section {
+    justify-content: center;
+  } 
+}
+
+@media screen and (min-height : 1025px){
+  .products-main {
+    height: 100vh;
+  }
+}
