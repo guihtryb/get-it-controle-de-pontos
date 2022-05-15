@@ -81,8 +81,8 @@ function ProductCard({ product, index }) {
       {
         role === 'admin' && (
           <div className="update-btns-container">
-            <EditProductButton index={product.id} />
-            <DeleteButton index={product.id} />
+            <EditProductButton id={product.id} />
+            <DeleteButton id={product.id} />
           </div>
         )
       }
