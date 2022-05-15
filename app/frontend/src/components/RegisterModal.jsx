@@ -45,7 +45,7 @@ function RegisterModal() {
     }
 
     try {
-      const endpoint = '/user';
+      const endpoint = '/users';
 
       await requestRegister(endpoint, {
         fullName, username, email, password,
