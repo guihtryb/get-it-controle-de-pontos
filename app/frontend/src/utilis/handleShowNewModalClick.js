@@ -1,4 +1,4 @@
-const handleShowNewModalClick = (setShowPreviousModal, setShowNextModal ) => {
+const handleShowNewModalClick = (setShowPreviousModal, setShowNextModal) => {
   setShowPreviousModal(false);
   setShowNextModal(true);
 };
