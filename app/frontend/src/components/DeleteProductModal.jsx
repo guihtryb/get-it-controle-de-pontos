@@ -40,14 +40,7 @@ function DeleteProductModal() {
           <div
             className="delete-options"
           >
-            <button
-              data-testid="delete-no"
-              type="button"
-              onClick={() => setShowDeleteProductModal(false)}
-              className="delete-yes"
-            >
-              Não
-            </button>
+            {' '}
             <button
               type="button"
               data-testid="delete-yes"
@@ -55,6 +48,14 @@ function DeleteProductModal() {
               onClick={handleDelete}
             >
               Sim
+            </button>
+            <button
+              data-testid="delete-no"
+              type="button"
+              onClick={() => setShowDeleteProductModal(false)}
+              className="delete-yes"
+            >
+              Não
             </button>
           </div>
         </form>
