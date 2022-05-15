@@ -9,7 +9,7 @@ const fullNameSchema = (fullName = ''): SchemaResponse[] => [
     message: ErrorMessage.BAD_REQUEST,
   },
   {
-    invalid: invalidInputMinLength(fullName, 10),
+    invalid: invalidInputMinLength(fullName, 8),
     code: StatusCode.UNAUTHORIZED,
     message: ErrorMessage.UNAUTHORIZED,
   },
