@@ -1,12 +1,15 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-undef */
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../../App';
 import renderWithRouter from '../helper/renderWithRouter';
-import { invalidUser,  users } from '../mocks/user';
-import userEvent from '@testing-library/user-event';
-let service =  require('../../services/requests');
+import { invalidUser, users } from '../mocks/user';
 
-describe('Tela de login', () => {
+const service = require('../../services/requests');
+
+describe('Testando página Login', () => {
   describe('Deve possuir um header que', () => {
     it('possui um atributo data-testid igual a `get-it-header`', () => {
       renderWithRouter(<App />);
@@ -26,7 +29,7 @@ describe('Tela de login', () => {
     it('possui um botão com o atributo `login-btn`', () => {
       renderWithRouter(<App />);
 
-      const loginBtn = screen.getByTestId(`login-btn`);
+      const loginBtn = screen.getByTestId('login-btn');
 
       expect(loginBtn).toBeInTheDocument();
       expect(loginBtn).toHaveTextContent('Login');
@@ -39,36 +42,36 @@ describe('Tela de login', () => {
       it('possui um data-testid `login-modal-container`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
         const loginModalContainer = screen.getByTestId('login-modal-container');
 
         expect(loginModalContainer).toBeInTheDocument();
-        expect(loginModalContainer).toHaveStyle('display: flex')
+        expect(loginModalContainer).toHaveStyle('display: flex');
       });
       it('possui um data-testid `login-modal`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
         const loginModal = screen.getByTestId('login-modal');
 
         expect(loginModal).toBeInTheDocument();
-        expect(loginModal).toHaveStyle('display: block')
+        expect(loginModal).toHaveStyle('display: block');
       });
       it('possui um botão para fechar o modal com o data-testid `close`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
         const closeButton = screen.getByRole('button', {
-          name: 'X'
+          name: 'X',
         });
 
         expect(closeButton).toBeInTheDocument();
@@ -78,12 +81,12 @@ describe('Tela de login', () => {
 
         const loginModal = screen.getByTestId('login-modal');
 
-        expect(loginModal).toHaveStyle('display: none')
+        expect(loginModal).toHaveStyle('display: none');
       });
       it('possui um input de email com o data-testid `login-email-input`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
@@ -95,7 +98,7 @@ describe('Tela de login', () => {
       it('possui um input de password com o data-testid `login-password-input`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
@@ -107,7 +110,7 @@ describe('Tela de login', () => {
       it('possui um botão com o data-testid `login-submit-btn`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
@@ -121,7 +124,7 @@ describe('Tela de login', () => {
 
         jest.spyOn(service, 'requestLogin').mockRejectedValue(new Error('Senha ou E-mail incorretos!'));
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
@@ -143,7 +146,7 @@ describe('Tela de login', () => {
 
         jest.spyOn(service, 'requestLogin').mockResolvedValue(users[0].fullName, users[0].email);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
@@ -164,7 +167,7 @@ describe('Tela de login', () => {
       it('possui um elemento com o data-testid `login-go-to-register`', () => {
         renderWithRouter(<App />);
 
-        const loginBtn = screen.getByTestId(`login-btn`);
+        const loginBtn = screen.getByTestId('login-btn');
 
         userEvent.click(loginBtn);
 
@@ -178,9 +181,9 @@ describe('Tela de login', () => {
 
         it('possui um data-testid `register-modal-container`', () => {
           renderWithRouter(<App />);
-  
-          const loginBtn = screen.getByTestId(`login-btn`);
-  
+
+          const loginBtn = screen.getByTestId('login-btn');
+
           userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
@@ -195,7 +198,7 @@ describe('Tela de login', () => {
         it('possui um data-testid `register-modal`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -205,12 +208,12 @@ describe('Tela de login', () => {
 
           const registerModal = screen.getByTestId('register-modal');
 
-          expect(registerModal).toHaveStyle('display: block')
-          });
+          expect(registerModal).toHaveStyle('display: block');
+        });
         it('possui um input para nome completo com o data-testid `register-fullname-input`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -218,12 +221,12 @@ describe('Tela de login', () => {
 
           userEvent.click(loginGoToRegister);
 
-          expect(screen.getByTestId(`register-fullname-input`)).toBeInTheDocument();
+          expect(screen.getByTestId('register-fullname-input')).toBeInTheDocument();
         });
         it('possui um input para nome de usuário com o data-testid `register-username-input`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -231,12 +234,12 @@ describe('Tela de login', () => {
 
           userEvent.click(loginGoToRegister);
 
-          expect(screen.getByTestId(`register-username-input`)).toBeInTheDocument();
+          expect(screen.getByTestId('register-username-input')).toBeInTheDocument();
         });
         it('possui um input para email com o data-testid `register-email-input`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -244,12 +247,12 @@ describe('Tela de login', () => {
 
           userEvent.click(loginGoToRegister);
 
-          expect(screen.getByTestId(`register-email-input`)).toBeInTheDocument();
+          expect(screen.getByTestId('register-email-input')).toBeInTheDocument();
         });
         it('possui um input para senha com o data-testid `register-password-input`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -257,12 +260,12 @@ describe('Tela de login', () => {
 
           userEvent.click(loginGoToRegister);
 
-          expect(screen.getByTestId(`register-password-input`)).toBeInTheDocument();
+          expect(screen.getByTestId('register-password-input')).toBeInTheDocument();
         });
         it('possui um botão com o data-testid `register-submit-btn`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -270,16 +273,16 @@ describe('Tela de login', () => {
 
           userEvent.click(loginGoToRegister);
 
-          expect(screen.getByTestId(`register-submit-btn`)).toBeInTheDocument();
-          expect(screen.getByTestId(`register-submit-btn`)).toHaveAttribute('type', 'submit');
+          expect(screen.getByTestId('register-submit-btn')).toBeInTheDocument();
+          expect(screen.getByTestId('register-submit-btn')).toHaveAttribute('type', 'submit');
         });
         it('retorna uma mensagem de erro caso o registro seja inválido`', async () => {
           renderWithRouter(<App />);
 
           jest.spyOn(service, 'requestRegister').mockRejectedValue(new Error('Este e-mail já possui uma conta!'));
 
-          const loginBtn = screen.getByTestId(`login-btn`);
-  
+          const loginBtn = screen.getByTestId('login-btn');
+
           userEvent.click(loginBtn);
 
           const loginGoToRegister = screen.getByTestId('login-go-to-register');
@@ -309,7 +312,7 @@ describe('Tela de login', () => {
 
           jest.spyOn(service, 'requestRegister').mockResolvedValue(true);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 
@@ -328,7 +331,8 @@ describe('Tela de login', () => {
           userEvent.type(registerEmailInput, 'johndoe02@email.com');
           userEvent.type(registerPasswordInput, 'super secret');
 
-          await waitFor(async () => await userEvent.click(registerSubmitBtn) );
+          // eslint-disable-next-line no-return-await
+          await waitFor(async () => await userEvent.click(registerSubmitBtn));
 
           expect(screen.queryByTestId('register-error-message')).not.toBeInTheDocument();
           expect(await screen.findByTestId('register-success-message')).toBeInTheDocument();
@@ -336,7 +340,7 @@ describe('Tela de login', () => {
         it('possibilita o usuário voltar a tela de login através do elemento `voltar`', () => {
           renderWithRouter(<App />);
 
-          const loginBtn = screen.getByTestId(`login-btn`);
+          const loginBtn = screen.getByTestId('login-btn');
 
           userEvent.click(loginBtn);
 

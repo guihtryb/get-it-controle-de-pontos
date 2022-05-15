@@ -51,16 +51,16 @@
   font-family: 'Nunito';
   font-size: 1rem;
   font-weight: 700;
-  margin-top: 1.5rem;
   margin: auto;
+  margin-top: 1.5rem;
   padding: 0.7rem 2rem;
   transition: all ease .2s;
 }
 
 .login-error-message {
   color: red;
-  text-align: center;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .login-modal button[type="submit"]:hover {
@@ -88,13 +88,14 @@
 }
 
 .login-go-to-register-container {
-  text-align: center;
   margin-top: 1.5rem;
+  text-align: center;
 }
 
-.login-go-to-register-container span {
+.login-go-to-register-container button {
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
   margin-left: .5rem;
   text-decoration: underline;
-  font-weight: 700;
-  cursor: pointer;
 }

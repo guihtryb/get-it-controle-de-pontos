@@ -1,27 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
-import Context from '../context/Context';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-
-import '../styles/components/LoginModal.css';
+import Context from '../context/Context';
 import errorMessages from '../validations/errorMessages';
-import CloseButton from './CloseButton';
 import { setDisplay, handleShowNewModalClick } from '../utilis';
 import { requestLogin } from '../services/requests';
+import CloseButton from './CloseButton';
 
-const LoginModal = () => {
+import '../styles/components/LoginModal.css';
+
+function LoginModal() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [failedLogin, setFailedLogin] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [role, setRole] = useState('');
 
   const login = async (e) => {
     e.preventDefault();
 
     try {
-      const endpoint = '/login'
+      const endpoint = '/login';
 
       const { user, token } = await requestLogin(endpoint, { email, password });
+
+      setRole(user.role);
 
       localStorage.setItem('user', JSON.stringify({ user, token }));
 
@@ -29,8 +32,8 @@ const LoginModal = () => {
     } catch (err) {
       const errorCode = err.toString().slice(-3);
 
-      const error = errorMessages[errorCode] 
-        ? errorMessages[errorCode] : errorMessages['defaultMessage'];
+      const error = errorMessages[errorCode]
+        ? errorMessages[errorCode] : errorMessages.defaultMessage;
 
       setFailedLogin(true);
 
@@ -45,10 +48,10 @@ const LoginModal = () => {
   const {
     setShowLoginModal,
     showLoginModal,
-    setShowRegisterModal,
+    setShowRegisterUserModal,
   } = useContext(Context);
 
-  if (isLogged) return <Redirect to="/products" />;
+  if (isLogged) return <Redirect to={`/${role}/products`} />;
 
   return (
     <section
@@ -56,34 +59,34 @@ const LoginModal = () => {
       data-testid="login-modal-container"
       style={{ display: setDisplay(showLoginModal).container }}
     >
-    <div
-      data-testid="login-modal"
-      className="login-modal"
-      style={{ display: setDisplay(showLoginModal).box }}
-    >
-      <CloseButton setShowModal={setShowLoginModal} />
-      <form>
-        <label htmlFor="login-email-input">
-          Email:
-          <input
-            data-testid="login-email-input"
-            id="login-email-input"
-            type="email"
-            value={email}
-            onChange={ ({ target: { value } }) => setEmail(value) }
-          />
-        </label>
-        <label htmlFor="login-password-input">
-          Senha:
-          <input
-            data-testid="login-password-input"
-            id="login-password-input"
-            type="password"
-            value={password}
-            onChange={({ target: { value } }) => setPassword(value)}
-        />
-        </label>
-        {
+      <div
+        data-testid="login-modal"
+        className="login-modal"
+        style={{ display: setDisplay(showLoginModal).box }}
+      >
+        <CloseButton setShowModal={setShowLoginModal} />
+        <form>
+          <label htmlFor="login-email-input">
+            Email:
+            <input
+              data-testid="login-email-input"
+              id="login-email-input"
+              type="email"
+              value={email}
+              onChange={({ target: { value } }) => setEmail(value)}
+            />
+          </label>
+          <label htmlFor="login-password-input">
+            Senha:
+            <input
+              data-testid="login-password-input"
+              id="login-password-input"
+              type="password"
+              value={password}
+              onChange={({ target: { value } }) => setPassword(value)}
+            />
+          </label>
+          {
           (failedLogin)
             ? (
               <p
@@ -96,29 +99,30 @@ const LoginModal = () => {
               </p>
             ) : null
         }
-        <button
-          data-testid="login-submit-btn"
-          type="submit"
-          onClick={(e) => login(e)}
-        >
-          Entrar
-        </button>
-      </form>
-      <hr />
-      <div className="login-go-to-register-container">
-        <p>
-          Não possui uma conta?
-          <span
-            data-testid="login-go-to-register"
-            onClick={ () => handleShowNewModalClick(setShowLoginModal, setShowRegisterModal) }
+          <button
+            data-testid="login-submit-btn"
+            type="submit"
+            onClick={(e) => login(e)}
           >
-            Registre-se.
-          </span>
-        </p>
+            Entrar
+          </button>
+        </form>
+        <hr />
+        <div className="login-go-to-register-container">
+          <p>
+            Não possui uma conta?
+            <button
+              data-testid="login-go-to-register"
+              onClick={() => handleShowNewModalClick(setShowLoginModal, setShowRegisterUserModal)}
+              type="button"
+            >
+              Registre-se.
+            </button>
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
-};
+}
 
 export default LoginModal;

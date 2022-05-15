@@ -1,8 +1,9 @@
 import React from 'react';
-import '../styles/components/Points.css'
 import { getUserPoints } from '../utilis';
 
-const Points = () => {
+import '../styles/components/Points.css';
+
+function Points() {
   return (
     <div
       className="user-points-container"
@@ -11,6 +12,6 @@ const Points = () => {
       <span data-testid="user-points">{getUserPoints()}</span>
     </div>
   );
-};
+}
 
 export default Points;

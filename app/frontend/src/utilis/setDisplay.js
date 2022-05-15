@@ -2,13 +2,13 @@ const setDisplay = (showModal) => {
   if (showModal) {
     return {
       container: 'flex',
-      box: 'block'
-    }
+      box: 'block',
+    };
   }
   return {
     container: 'none',
-    box: 'none'
-  }
+    box: 'none',
+  };
 };
 
 export default setDisplay;

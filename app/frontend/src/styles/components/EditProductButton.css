@@ -1,0 +1,19 @@
+.edit-btn {
+  background-color: #c5c2d6;
+  border: none;
+  cursor: pointer;
+  margin: 0 1rem;
+}
+
+.edit-btn:after {
+  background: none repeat scroll 0 0 #000;
+  content: "";
+  display: block;
+  height: 2px;
+  transition: all ease .2s;
+  width: 0;
+}
+
+.edit-btn:hover:after {
+  width: 100%;
+}

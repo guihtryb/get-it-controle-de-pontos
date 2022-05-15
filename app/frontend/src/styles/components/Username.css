@@ -1,6 +1,7 @@
 .username-span {
   color: #FFF;
   font-family: 'Nunito';
+  font-size: 1.15rem;
   grid-column: 3;
   margin: auto;
 }

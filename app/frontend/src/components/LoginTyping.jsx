@@ -1,11 +1,17 @@
+import React from 'react';
+
 import '../styles/components/LoginTyping.css';
 
-const LoginTyping = () => {
+function LoginTyping() {
   return (
     <span data-testid="typing-span" className="typing-span">
-      Troque <span className="span-points">pontos</span> por produtos exclusivos!
+      Troque
+      {' '}
+      <span className="span-points">pontos</span>
+      {' '}
+      por produtos exclusivos!
     </span>
   );
-};
+}
 
 export default LoginTyping;

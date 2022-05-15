@@ -1,0 +1,20 @@
+.delete-btn {
+  background-color: #c5c2d6;
+  border: none;
+  cursor: pointer;
+  margin: 0 0.6rem;
+  transition: all ease .3s;
+}
+
+.delete-btn:after {
+  background: none repeat scroll 0 0 #000;
+  content: "";
+  display: block;
+  height: 2px;
+  transition: all ease .2s;
+  width: 0;
+}
+
+.delete-btn:hover:after {
+  width: 100%;
+}

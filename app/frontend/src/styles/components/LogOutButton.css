@@ -1,5 +1,5 @@
 .logout-btn {
-  background-color: #261f50;
+  background-color: #221c42;
   border-radius: 6px;
   border: none;
   color: rgb(150, 141, 156);
@@ -14,5 +14,6 @@
 }
 
 .logout-btn:hover {
+  background-color: #261f50;
   color: #FFF;
 }

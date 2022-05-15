@@ -8,8 +8,17 @@ export const users = [
     fullName: 'Guilherme Heráclito Viana',
     userName: 'Guih01',
     email: 'guilhermehviana01@gmail.com',
+    role: 'user',
     points: 600,
     password: 'Secret123',
+  },
+  {
+    fullName: 'Rachael Prize',
+    userName: 'AdminRachael',
+    email: 'rprize@test.com',
+    role: 'admin',
+    points: 0,
+    password: 'SecretAdmin123',
   },
 ];
 
