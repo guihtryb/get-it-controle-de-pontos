@@ -1,15 +1,17 @@
-import errorMessages from "./errorMessages";
+import errorMessages from './errorMessages';
 
 const fullNameValidation = (fullName, error) => {
   if (fullName.length < 8 || fullName.length > 40) {
     return error;
   }
+  return null;
 };
 
 const usernameValidation = (username, error) => {
   if (username.length < 3 || username.length > 15) {
     return error;
   }
+  return null;
 };
 
 const emailValidation = (email, error) => {
@@ -18,12 +20,14 @@ const emailValidation = (email, error) => {
   if (!correctEmailRegex.test(email)) {
     return error;
   }
+  return null;
 };
 
 const passwordValidation = (password, error) => {
   if (password < 7) {
     return error;
   }
+  return null;
 };
 
 const inputsSchema = (
@@ -47,10 +51,10 @@ const inputsSchema = (
 ];
 
 const validateInputs = (...inputs) => {
-  const invalid = inputsSchema(...inputs).find(input => input.error);
+  const invalid = inputsSchema(...inputs).find((input) => input.error);
 
   if (invalid) return invalid.error;
-  console.log('here');
+
   return null;
-}
+};
 export default validateInputs;
