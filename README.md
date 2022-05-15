@@ -67,11 +67,17 @@
   3. Instale as depêndencias do frontend com o comando `npm install` em seu terminal;
   4. Execute o comando `npm start` e será aplicação será aberta em uma janela do seu browser;
 
+  -> Você pode também subir a aplicação com docker, rodando em seu terminal o comando `npm run compose:up`, e então ir até localhost:3000 em seu browser.
+
+
   ## Para logar como admin:
   
   - Para logar como administrador, clique no botão Login e utilize o email e senha fictícia;
     - Email: llewis@test.com;
     - Senha: admin_lewis01
+
+  <div align="center">
+  </div>
 
   ## Para logar como usuário:
   
@@ -80,9 +86,15 @@
   - Clique em voltar e realize o login normalmente com email e senha igual aos informados previamente no campo de registro;
 
   ### Ou
-  
+
   - Clique no botão Login e utilize o email e senha fictícia;
     - Email: veronicahop@test.com;
     - Senha: VeHooper;
-   
+
    - Você logará como usuário porém com pontos iniciais;
+
+  <div align="center">
+    <img src="./assets/login-btn.png" alt="LoginScreen-login-btn" height="400px"/>
+    <img src="./assets/login-or-register.png" alt="LoginScreen-login-or-register" height="400px"/>
+  </div>
+
