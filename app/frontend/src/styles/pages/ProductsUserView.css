@@ -5,12 +5,12 @@
 }
 
 .products-section {
-  margin: auto;
   display: flex;
-  width: 90vw;
-  justify-content: flex-start;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin: auto;
+  width: 90vw;
 }
 
 @media screen and (max-width : 1560px){
