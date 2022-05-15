@@ -17,6 +17,7 @@ export const users = [
     userName: 'AdminRachael',
     email: 'rprize@test.com',
     role: 'admin',
+    points: 0,
     password: 'SecretAdmin123',
   },
 ];
