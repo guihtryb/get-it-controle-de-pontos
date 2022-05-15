@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn('products', 'to_points_converter', {
-      type: Sequelize.NUMBER,
+      type: Sequelize.DECIMAL(10, 2),
     });
   },
 

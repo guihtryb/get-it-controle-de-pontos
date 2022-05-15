@@ -10,6 +10,7 @@ class Products extends Model {
   image!: string;
   orderId!: number;
   sold!: boolean;
+  toPointsConverter!: number;
 }
 
 Products.init({
@@ -41,6 +42,10 @@ Products.init({
   },
   sold: {
     type: BOOLEAN,
+    allowNull: false,
+  },
+  toPointsConverter: {
+    type: DECIMAL(10, 2),
     allowNull: false,
   },
 }, {
