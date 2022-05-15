@@ -1,0 +1,65 @@
+.delete-product-modal-container {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.delete-product-modal {
+  animation: showModal 0.5s;
+  background: white;
+  border-radius: 5rem;
+  border: 10px solid #ad0453;
+  box-shadow: 0 0 0 10px white;
+  box-sizing: border-box;
+  display: none;
+  height: fit-content;
+  margin: auto;
+  padding: 20px 40px;
+  position: relative;
+  width: 25rem;
+}
+
+.delete-options {
+  display: flex;
+}
+
+.delete-product-modal button[data-testid="delete-no"] {
+  background: red;
+  border-radius: 4px;
+  border: none;
+  color: black;
+  cursor: pointer;
+  display: block;
+  font-family: 'Nunito';
+  font-size: 1rem;
+  font-weight: 700;
+  margin: auto;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  transition: all ease .2s;
+}
+
+.delete-product-modal button[data-testid="delete-yes"] {
+  background: green;
+  border-radius: 4px;
+  border: none;
+  color: black;
+  cursor: pointer;
+  display: block;
+  font-family: 'Nunito';
+  font-size: 1rem;
+  font-weight: 700;
+  margin: auto;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  transition: all ease .2s;
+}
+
+
