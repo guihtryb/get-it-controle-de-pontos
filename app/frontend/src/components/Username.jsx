@@ -1,18 +1,16 @@
 import React from 'react';
-import '../styles/components/Username.css'
+import '../styles/components/Username.css';
 import { getUsername } from '../utilis';
 
-
-const Username = () => {
-
+function Username() {
   return (
-    <span 
+    <span
       data-testid="username-span"
       className="username-span"
     >
-      {`Hi, ${ getUsername() }!`}
+      {`Olá, ${getUsername()}!`}
     </span>
   );
-};
+}
 
 export default Username;
