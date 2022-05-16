@@ -67,7 +67,7 @@
   4. Instale as depêndencias do frontend com o comando `npm install` em seu terminal;
   5. Execute o comando `npm start` e será aplicação será aberta em uma janela do seu browser;
 
-  -> Você pode também subir a aplicação com docker, rodando em seu terminal o comando `npm run compose:up`, e então ir até localhost:3000 em seu browser.
+- Você pode também subir a aplicação com docker, rodando em seu terminal o comando `npm run compose:up`, e então ir até localhost:3000 em seu browser.
 
 
   ## Para logar como admin:
