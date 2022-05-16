@@ -138,7 +138,7 @@ function RegisterProductModal() {
             type="submit"
             onClick={(e) => register(e)}
           >
-            Registrar
+            Cadastrar
           </button>
         </form>
       </div>
