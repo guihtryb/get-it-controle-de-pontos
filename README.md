@@ -54,7 +54,7 @@
   2. Instale as depêndencias do backend com o comando `npm install` em seu terminal;
   3. Abra uma instância do seu vscode com o comando `code .` ou com seu editor, abra a pasta src/database/config;
   4. Já dentro da pasta, abra o arquivo database.ts;
-  5. No objeto config, mude o valor da chave password para a sua senha do mysql;
+  5. No objeto config, mude o valor da chave password para a sua senha do mysql e da chave username para o seu usuário mysql;
   6. Execute o comando `npm run db:reset` em seu terminal para criar o Banco de dados;
   7. Execute o comando `npx sequelize db:migrate` em seu terminal para que o Sequelize execute as migrations;
   8. Execute o comando `npx sequelize db:seed:all` em seu terminal para que o Sequelize popule o Banco de dados;
@@ -62,10 +62,10 @@
 
   ### Frontend
 
-  1. Volte uma pasta com o comando `cd ..` em seu terminal;
-  2. Entre na pasta frontend com o comando `cd frontend` em seu terminal;
-  3. Instale as depêndencias do frontend com o comando `npm install` em seu terminal;
-  4. Execute o comando `npm start` e será aplicação será aberta em uma janela do seu browser;
+  1. Abra outra instancia do seu terminal e volte uma pasta com o comando `cd ..`;
+  3. Entre na pasta frontend com o comando `cd frontend` em seu terminal;
+  4. Instale as depêndencias do frontend com o comando `npm install` em seu terminal;
+  5. Execute o comando `npm start` e será aplicação será aberta em uma janela do seu browser;
 
   -> Você pode também subir a aplicação com docker, rodando em seu terminal o comando `npm run compose:up`, e então ir até localhost:3000 em seu browser.
 
