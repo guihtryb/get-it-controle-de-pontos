@@ -1,13 +1,3 @@
-<div align="center">
-
-  ![VollSolutions-Logo](./assets/voll-logo.png)
-
-  # Teste desenvolvido para a posição de desenvolvedor FullStack na Voll Solutions.
-  ### Repositório dedicado à realização do teste proposto pela empresa Voll Solutions
-</div>
-<br />
-<br />
-<div>
   <div>
 
   ## Aplicando:
