@@ -26,9 +26,9 @@
   <br />
   <div>
 
-  # Sobre o teste
+  # Sobre o projeto
 
-  O projeto proposto consiste no desevolvimento frontend e backend de uma plataforma para controle de pontos/moedas com uma loja virtual. A aplicação possui 3 telas para usuários consumidores e administradores, que se comunicam com uma API Rest.
+  O projeto proposto consiste no desevolvimento frontend e backend de uma plataforma para controle de pontos/moedas com uma loja virtual. A aplicação telas para usuários consumidores e administradores.
   </div>    
 </div>
 
