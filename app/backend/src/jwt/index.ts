@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { IUserTokenData } from '../interfaces';
 
-const secret = process.env.SECRET as string | 'GET_IT';
+const secret = process.env.SECRET as string || 'GET_IT';
 
 const createToken = (userData: IUserTokenData) => jwt.sign(
   { data: userData },
