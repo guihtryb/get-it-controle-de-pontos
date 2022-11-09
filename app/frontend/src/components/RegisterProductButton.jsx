@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
 import '../styles/components/RegisterProductButton.css';
-import { getUserRole } from '../utilis/getUserRole';
+import { getUserRole } from '../utilis';
 
 function RegisterProductButton() {
   const { setShowRegisterProductModal } = useContext(Context);

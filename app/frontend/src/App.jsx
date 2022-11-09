@@ -6,15 +6,19 @@ import ProductsUserView from './pages/ProductsUserView';
 import ProductsAdminView from './pages/ProductsAdminView';
 
 import './styles/App.css';
+import Cart from './pages/Cart';
+import Deposit from './pages/Deposit';
 
 function App() {
   return (
     <Provider>
       <Switch>
         <Redirect exact from="/" to="/login" />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/user/products" component={ProductsUserView} />
-        <Route exact path="/admin/products" component={ProductsAdminView} />
+        <Route path="/login" component={Login} />
+        <Route path="/user/products" component={ProductsUserView} />
+        <Route path="/user/cart" component={Cart} />
+        <Route path="/user/deposit" component={Deposit} />
+        <Route path="/admin/products" component={ProductsAdminView} />
       </Switch>
     </Provider>
   );

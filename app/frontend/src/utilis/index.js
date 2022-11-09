@@ -1,8 +1,9 @@
-import { getUsername } from './getUsename';
-import { getUserPoints } from './getUserPoints';
+import getUsername from './getUsename';
+import getUserPoints from './getUserPoints';
 import handleShowNewModalClick from './handleShowNewModalClick';
 import setDisplay from './setDisplay';
-import { getUserRole } from './getUserRole';
+import getUserRole from './getUserRole';
+import getUserBalance from './getUserBalance';
 
 export {
   handleShowNewModalClick,
@@ -10,4 +11,5 @@ export {
   getUsername,
   getUserPoints,
   getUserRole,
+  getUserBalance,
 };

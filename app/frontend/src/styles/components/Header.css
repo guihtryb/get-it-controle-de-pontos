@@ -32,9 +32,32 @@ header {
 }
 
 .nav-list a {
+  display: block;
+  position: relative;
   padding: 16px;
   font-family: 'Nunito', 'sans-serif';
   text-decoration: none;
-  color: #FFF;
+  color: rgba(255, 255, 255, 0.856);
   font-weight: 700;
+  transition: color ease 0.2s;
+}
+
+.nav-list a::after {
+  position: absolute;
+  content: "";
+  background-color: #FFF;
+  display: block;
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: 8px;
+  transition: all ease 0.2s;
+}
+
+.nav-list a:hover {
+  color: #FFF;
+}
+
+.nav-list a:hover::after {
+  width: 100%;
 }

@@ -1,19 +1,18 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import Context from './Context';
 import products from '../mocks/products';
 
 export default function Provider({ children }) {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterUserModal, setShowRegisterUserModal] = useState(false);
-  const [showRegisterProductModal, setShowRegisterProductModal] = useState(false);
-  const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
-  const [askedToDelete, setAskedToDelete] = useState();
-  const [showEditProductModal, setShowEditProductModal] = useState(false);
-  const [askedToEdit, setAskedToEdit] = useState();
+  const [showLoginModal, setShowLoginModal] = React.useState(false);
+  const [showRegisterUserModal, setShowRegisterUserModal] = React.useState(false);
+  const [showRegisterProductModal, setShowRegisterProductModal] = React.useState(false);
+  const [showDeleteProductModal, setShowDeleteProductModal] = React.useState(false);
+  const [showEditProductModal, setShowEditProductModal] = React.useState(false);
+  const [askedToDelete, setAskedToDelete] = React.useState(false);
+  const [askedToEdit, setAskedToEdit] = React.useState(false);
 
-  const contextValue = {
+  const contextValue = React.useMemo(() => ({
     setShowLoginModal,
     showLoginModal,
     showRegisterUserModal,
@@ -29,7 +28,7 @@ export default function Provider({ children }) {
     setAskedToEdit,
     askedToEdit,
     products,
-  };
+  }));
 
   return (
     <Context.Provider value={contextValue}>

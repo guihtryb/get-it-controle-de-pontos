@@ -1,6 +1,4 @@
-const handleShowNewModalClick = (setShowPreviousModal, setShowNextModal) => {
+export default function handleShowNewModalClick(setShowPreviousModal, setShowNextModal) {
   setShowPreviousModal(false);
   setShowNextModal(true);
-};
-
-export default handleShowNewModalClick;
+}

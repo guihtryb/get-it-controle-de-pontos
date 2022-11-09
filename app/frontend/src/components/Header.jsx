@@ -6,7 +6,7 @@ import LoginButton from './LoginButton';
 import LogOutButton from './LogOutButton';
 import RegisterProductButton from './RegisterProductButton';
 import HeaderUserInfo from './HeaderUserInfo';
-import { getUserPoints } from '../utilis';
+import { getUserPoints, getUserBalance } from '../utilis';
 import NavLinkItem from './NavLinkItem';
 
 const pageComponents = {
@@ -21,12 +21,12 @@ const pageComponents = {
       <GetItLogo />
       <div className="user-infos-container">
         <HeaderUserInfo title="Seus pontos:" info={(getUserPoints()).toString()} />
-        <HeaderUserInfo title="Seu saldo:" info="R$ 0,00" />
+        <HeaderUserInfo title="Seu saldo:" info={(getUserBalance())} />
       </div>
       <nav>
         <ul className="nav-list">
-          <NavLinkItem title="Ver Carrinho" href="/cart" />
-          <NavLinkItem title="Realizar Depósito" href="/deposit" />
+          <NavLinkItem title="Ver Carrinho" href="/user/cart" />
+          <NavLinkItem title="Realizar Depósito" href="/user/deposit" />
         </ul>
       </nav>
       <LogOutButton />
