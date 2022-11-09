@@ -11,11 +11,11 @@ import '../styles/components/ProductCard.css';
 function ProductCard({ product, index }) {
   const [toolTip, setToolTip] = useState('none');
 
-  const toPointsConverter = 0.50; // wip - valor a ser atribuído no banco de dados
-
   const role = getUserRole();
 
   const ableToGet = product.pricePoints < getUserPoints();
+
+  const toPointsConverter = 0.75; /* wip */
 
   const convert = () => {
     const pointsReturnedOnBuy = Math.round(toPointsConverter * product.price);
@@ -97,6 +97,7 @@ ProductCard.propTypes = {
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     pricePoints: PropTypes.number.isRequired,
+    toPointsConverter: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
 };

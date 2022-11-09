@@ -1,5 +1,40 @@
+html, body {
+  max-width: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
 header {
+  height: 84px;
   background-color: #8f14e4;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  padding: 36px 72px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}
+
+.user-infos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-list a {
+  padding: 16px;
+  font-family: 'Nunito', 'sans-serif';
+  text-decoration: none;
+  color: #FFF;
+  font-weight: 700;
 }

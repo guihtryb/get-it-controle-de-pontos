@@ -1,7 +1,5 @@
 import React from 'react';
 import Header from '../components/Header';
-import GetItLogo from '../components/GetItLogo';
-import LoginButton from '../components/LoginButton';
 import LoginImage from '../components/LoginImage';
 import LoginModal from '../components/LoginModal';
 import LoginTyping from '../components/LoginTyping';
@@ -13,8 +11,7 @@ function Login() {
   return (
     <>
       <Header
-        getItLogo={<GetItLogo key="getItLogo" />}
-        loginButto={<LoginButton key="loginButton" />}
+        page="login"
       />
       <main data-testid="login-main">
         <LoginTyping />

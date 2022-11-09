@@ -1,0 +1,11 @@
+/* CSS HEX */
+--mischka: #ded9e1;
+--cardinal-pink: #730455;
+--port-gore: #261f50;
+--electric-violet: #8f14e4;
+--razzmatazz: #dd0553;
+--lipstick: #ad0453;
+--seance: #791695;
+--scorpion: #615f61;
+--fuel-yellow: #fcba2e;
+--dark-scorpion: #3d3952;
