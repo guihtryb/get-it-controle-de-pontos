@@ -15,7 +15,7 @@ function ProductCard({ product, index }) {
 
   const ableToGet = product.pricePoints < getUserPoints();
 
-  const toPointsConverter = 0.75; /* wip */
+  const toPointsConverter = 0.6; /* wip */
 
   const convert = () => {
     const pointsReturnedOnBuy = Math.round(toPointsConverter * product.price);
@@ -97,7 +97,6 @@ ProductCard.propTypes = {
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     pricePoints: PropTypes.number.isRequired,
-    toPointsConverter: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
 };

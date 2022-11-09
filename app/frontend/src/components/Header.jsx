@@ -6,8 +6,9 @@ import LoginButton from './LoginButton';
 import LogOutButton from './LogOutButton';
 import RegisterProductButton from './RegisterProductButton';
 import HeaderUserInfo from './HeaderUserInfo';
-import { getUserPoints, getUserBalance } from '../utilis';
+import { getUserPoints } from '../utilis';
 import NavLinkItem from './NavLinkItem';
+import Context from '../context/Context';
 
 const pageComponents = {
   login: () => (
@@ -16,22 +17,26 @@ const pageComponents = {
       <LoginButton />
     </>
   ),
-  productsUserView: () => (
-    <>
-      <GetItLogo />
-      <div className="user-infos-container">
-        <HeaderUserInfo title="Seus pontos:" info={(getUserPoints()).toString()} />
-        <HeaderUserInfo title="Seu saldo:" info={(getUserBalance())} />
-      </div>
-      <nav>
-        <ul className="nav-list">
-          <NavLinkItem title="Ver Carrinho" href="/user/cart" />
-          <NavLinkItem title="Realizar Depósito" href="/user/deposit" />
-        </ul>
-      </nav>
-      <LogOutButton />
-    </>
-  ),
+  userView: () => {
+    const { userBalance } = React.useContext(Context);
+
+    return (
+      <>
+        <GetItLogo />
+        <div className="user-infos-container">
+          <HeaderUserInfo title="Seus pontos:" info={(getUserPoints()).toString()} />
+          <HeaderUserInfo title="Seu saldo:" info={`R$ ${userBalance.toPrecision(2)}`} />
+        </div>
+        <nav>
+          <ul className="nav-list">
+            <NavLinkItem title="Ver Carrinho" href="/user/cart" />
+            <NavLinkItem title="Realizar Depósito" href="/user/deposit" />
+          </ul>
+        </nav>
+        <LogOutButton />
+      </>
+    );
+  },
   productsAdminView: () => (
     <>
       <GetItLogo />

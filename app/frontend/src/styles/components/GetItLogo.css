@@ -6,4 +6,5 @@
   font-size: 2rem;
   padding-bottom: 5px;
   flex: 1;
+  min-width: fit-content;
 }

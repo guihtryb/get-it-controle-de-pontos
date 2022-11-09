@@ -17,18 +17,18 @@ header {
   justify-content: flex-end;
   align-items: center;
   gap: 24px;
+  width: 100vw;
 }
 
 .user-infos-container {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
 }
 
 .nav-list {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .nav-list a {
@@ -60,4 +60,37 @@ header {
 
 .nav-list a:hover::after {
   width: 100%;
+}
+
+@media (max-width : 880px ) {
+  header {
+    height: fit-content;
+    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    padding: 12px 24px;
+  }
+
+  .user-infos-container {
+    gap: 12px;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .logout-btn {
+    justify-self: center;
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .nav-list {
+    flex-wrap: nowrap;
+  }
+
+  .get-it-logo {
+    align-self: center;
+    justify-self: center;
+  }
 }

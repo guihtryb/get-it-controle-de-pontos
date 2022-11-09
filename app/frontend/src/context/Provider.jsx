@@ -11,6 +11,7 @@ export default function Provider({ children }) {
   const [showEditProductModal, setShowEditProductModal] = React.useState(false);
   const [askedToDelete, setAskedToDelete] = React.useState(false);
   const [askedToEdit, setAskedToEdit] = React.useState(false);
+  const [userBalance, setUserBalance] = React.useState(0.50);
 
   const contextValue = React.useMemo(() => ({
     setShowLoginModal,
@@ -28,6 +29,8 @@ export default function Provider({ children }) {
     setAskedToEdit,
     askedToEdit,
     products,
+    userBalance,
+    setUserBalance,
   }));
 
   return (

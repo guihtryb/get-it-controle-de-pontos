@@ -13,7 +13,7 @@ function ProductsUserView() {
 
   return (
     <>
-      <Header page="productsUserView" />
+      <Header page="userView" />
       <main className="products-main">
         <ProductsPageTitle text={userViewTitle} />
         <section className="products-section">
