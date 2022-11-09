@@ -1,18 +1,14 @@
-.user-points-container {
+.header-user-info-container {
   background-color: #261f50;
   border-radius: 1rem;
   color: #FFF;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   font-family: 'Nunito';
-  grid-column: 4;
-  height: fit-content;
-  margin: auto;
-  padding: .4rem .9rem;
+  padding: 6px 15px;
   text-align: center;
 }
 
-span[data-testid="user-points"] {
+.header-user-info {
   color: #fcba2e;
 }

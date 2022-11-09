@@ -2,7 +2,7 @@ main[data-testid^="login"] {
   background: linear-gradient(to left top, #fcba2e,#8f14e4);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 88.88vh;
+  min-height: 90.7vh;
   padding: 15px 10px;
 }
 

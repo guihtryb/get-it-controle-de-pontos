@@ -1,5 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-export const getUserPoints = () => {
+export default function getUserPoints() {
   const { user: { points } } = JSON.parse(localStorage.getItem('user'));
   return points;
-};
+}

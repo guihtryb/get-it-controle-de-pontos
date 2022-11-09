@@ -1,0 +1,29 @@
+.deposit-main {
+  background-color: #eceaf3;
+  font-family: 'Nunito', 'sans-serif';
+  min-height: 100vh;
+  padding: 60px 30px;
+}
+
+.payment-form {
+  background-color: #f5f3fd;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 28px;
+  padding: 60px;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-form label {
+  background-color: #eceaf3;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  padding: 16px;
+  max-width: 360px;
+  gap: 12px;
+}
