@@ -1,7 +1,11 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function Cart() {
   return (
-    <h1>Carrinho</h1>
+    <>
+      <Header page="userView" />
+      <h1>Carrinho</h1>
+    </>
   );
 }
