@@ -2,20 +2,71 @@ import React from 'react';
 import DepositModal from '../components/DepositModal';
 import Header from '../components/Header';
 import Input from '../components/Input';
+import Context from '../context/Context';
 import '../styles/pages/Deposit.css';
 
 export default function Deposit() {
   const [depositMethod, setDepositMethod] = React.useState('Cartão de Crédito');
-  const [depositValue, setDepositValue] = React.useState('0');
-  const [depositDone] = React.useState(false);
+  const [depositValue, setDepositValue] = React.useState('');
+  const [depositDone, setDepositDone] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const { userBalance, setUserBalance } = React.useContext(Context);
 
   const handleChange = ({ target }) => {
     const { value } = target;
     return target.type === 'radio' ? setDepositMethod(value) : setDepositValue(value);
   };
 
-  const handleClick = (e) => {
+  const validateDepositValueInput = (value) => {
+    const numberRegEx = /[.]?[0-9]/;
+    let formatedValue = value;
+
+    if (!value) {
+      setErrorMessage('Por favor digite um valor para depósito!');
+      throw Error();
+    }
+
+    if (formatedValue.includes(',')) {
+      formatedValue = formatedValue.replace(',', '.');
+    }
+
+    if (!numberRegEx.test(formatedValue)) {
+      setErrorMessage('Por favor insira um número válido (Apenas valores de 0-9 e "." são aceitos)');
+      throw Error();
+    }
+
+    formatedValue = Number(formatedValue);
+
+    if (!formatedValue) {
+      setErrorMessage('Digite um valor maior que 0 para depósto');
+      throw Error();
+    }
+    setErrorMessage('');
+    return Number(formatedValue);
+  };
+
+  const depositValueOnUserAccount = (value) => {
+    const validatedValue = validateDepositValueInput(value);
+
+    if (validatedValue) {
+      const sum = ((userBalance * 100) + (validatedValue * 100)) / 100;
+      setUserBalance(sum);
+    }
+  };
+
+  const handleClick = (e, value) => {
     e.preventDefault();
+    setIsLoading(true);
+    try {
+      depositValueOnUserAccount(value);
+      setDepositDone(true);
+    } catch (error) {
+      setDepositDone(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -58,14 +109,24 @@ export default function Deposit() {
             placeholder="100,00"
           />
 
-          <button type="submit" onClick={handleClick} className="submit-btn">
+          <button type="submit" onClick={(e) => handleClick(e, depositValue)} className="submit-btn">
             Depositar
           </button>
         </form>
         {
+          errorMessage && (
+          <p className="error-message">
+            { errorMessage }
+          </p>
+          )
+        }
+        {
+          isLoading && (<p>Efetuando depósito...</p>)
+        }
+        {
           depositDone && (
           <DepositModal
-            balanceValue={0}
+            balanceValue={userBalance}
             depositMethod={depositMethod}
             depositValue={depositValue}
           />
