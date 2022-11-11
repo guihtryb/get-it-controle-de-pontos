@@ -7,7 +7,10 @@ import '../styles/pages/Deposit.css';
 
 export default function Deposit() {
   const [depositMethod, setDepositMethod] = React.useState('Cartão de Crédito');
-  const [depositValue, setDepositValue] = React.useState('');
+  const [forms, setForms] = React.useState({
+    depositValue: '',
+    terms: false,
+  });
   const [depositDone, setDepositDone] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
@@ -15,8 +18,9 @@ export default function Deposit() {
   const { userBalance, setUserBalance } = React.useContext(Context);
 
   const handleChange = ({ target }) => {
-    const { value } = target;
-    return target.type === 'radio' ? setDepositMethod(value) : setDepositValue(value);
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    return target.type === 'radio' ? setDepositMethod(value) : setForms({ ...forms, [name]: value });
   };
 
   const validateDepositValueInput = (value) => {
@@ -39,7 +43,7 @@ export default function Deposit() {
 
     formatedValue = Number(formatedValue);
 
-    if (!formatedValue) {
+    if (formatedValue < 1) {
       setErrorMessage('Digite um valor maior que 0 para depósito!');
       throw Error();
     }
@@ -56,7 +60,7 @@ export default function Deposit() {
     }
   };
 
-  const handleClick = (e, value) => {
+  const handleSubmit = (e, value) => {
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -74,42 +78,52 @@ export default function Deposit() {
       <Header page="userView" />
       <main className="deposit-main">
         <h1>Realizar Depósito</h1>
-        <form className="deposit-form">
+        <form className="deposit-form" onSubmit={(e) => handleSubmit(e, forms.depositValue)}>
 
           <h2>Selecione um método de pagamento:</h2>
           <Input
-            type="radio"
-            title="Cartão de Crédito"
+            checked={depositMethod === 'Cartão de Crédito'}
             id="credit"
             name="deposit"
             onChange={handleChange}
+            title="Cartão de Crédito"
+            type="radio"
           />
           <Input
-            type="radio"
-            title="Pix"
+            checked={depositMethod === 'Pix'}
             id="pix"
             name="deposit"
             onChange={handleChange}
+            title="Pix"
+            type="radio"
           />
           <Input
-            type="radio"
-            title="Boleto"
+            checked={depositMethod === 'Boleto'}
             id="ticket"
             name="deposit"
             onChange={handleChange}
+            title="Boleto"
+            type="radio"
           />
 
           <h2>Digite o valor para depósito:</h2>
           <Input
-            type="text"
             id="deposit-value"
-            name="deposit-value"
+            name="depositValue"
             onChange={handleChange}
-            value={depositValue}
             placeholder="100,00"
+            type="text"
+            value={forms.depositValue}
           />
-
-          <button type="submit" onClick={(e) => handleClick(e, depositValue)} className="submit-btn">
+          <Input
+            id="terms"
+            name="terms"
+            onChange={handleChange}
+            title="Você está ciente de que os dados acima são fictícios?"
+            type="checkbox"
+            checked={forms.terms}
+          />
+          <button type="submit" className={`submit-btn ${!forms.terms ? 'disabled' : ''}`} disabled={!forms.terms}>
             Depositar
           </button>
           {
@@ -128,7 +142,7 @@ export default function Deposit() {
           <DepositModal
             balanceValue={userBalance}
             depositMethod={depositMethod}
-            depositValue={depositValue}
+            depositValue={forms.depositValue}
             setDepositDone={setDepositDone}
           />
           )

@@ -79,7 +79,6 @@
   border: 10px solid #8f14e4;
   box-shadow: 0 0 0 10px #FFF;
   box-sizing: border-box;
-  height: fit-content;
   margin: auto;
   padding: 20px 40px;
   position: relative;
@@ -107,6 +106,10 @@
   transition: all ease 0.2s;
   width: 120px;
   margin: auto;
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
 }
 
 .error-message {
