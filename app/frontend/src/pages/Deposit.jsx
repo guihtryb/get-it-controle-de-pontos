@@ -17,6 +17,27 @@ export default function Deposit() {
 
   const { userBalance, setUserBalance } = React.useContext(Context);
 
+  const depositRadioInputs = [
+    {
+      id: 'credit',
+      name: 'deposit',
+      title: 'Cartão de Crédito',
+      type: 'radio',
+    },
+    {
+      id: 'pix',
+      name: 'deposit',
+      title: 'Pix',
+      type: 'radio',
+    },
+    {
+      id: 'ticket',
+      name: 'deposit',
+      title: 'Boleto',
+      type: 'radio',
+    },
+  ];
+
   const handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -66,6 +87,7 @@ export default function Deposit() {
     try {
       depositValueOnUserAccount(value);
       setDepositDone(true);
+      setForms({ depositValue: '', terms: false });
     } catch (error) {
       setDepositDone(false);
     } finally {
@@ -80,31 +102,19 @@ export default function Deposit() {
         <h1>Realizar Depósito</h1>
         <form className="deposit-form" onSubmit={(e) => handleSubmit(e, forms.depositValue)}>
 
-          <h2>Selecione um método de pagamento:</h2>
-          <Input
-            checked={depositMethod === 'Cartão de Crédito'}
-            id="credit"
-            name="deposit"
-            onChange={handleChange}
-            title="Cartão de Crédito"
-            type="radio"
-          />
-          <Input
-            checked={depositMethod === 'Pix'}
-            id="pix"
-            name="deposit"
-            onChange={handleChange}
-            title="Pix"
-            type="radio"
-          />
-          <Input
-            checked={depositMethod === 'Boleto'}
-            id="ticket"
-            name="deposit"
-            onChange={handleChange}
-            title="Boleto"
-            type="radio"
-          />
+          <h2>Selecione um método de pagamento: </h2>
+          {
+            depositRadioInputs.map((input) => (
+              <Input
+                checked={depositMethod === input.title}
+                id={input.id}
+                name={input.name}
+                onChange={handleChange}
+                title={input.title}
+                type={input.type}
+              />
+            ))
+          }
 
           <h2>Digite o valor para depósito:</h2>
           <Input
