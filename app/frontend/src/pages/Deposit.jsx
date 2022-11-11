@@ -5,8 +5,29 @@ import Input from '../components/Input';
 import Context from '../context/Context';
 import '../styles/pages/Deposit.css';
 
+const depositRadioInputs = [
+  {
+    id: 'credit',
+    name: 'deposit',
+    title: 'Cartão de crédito',
+    type: 'radio',
+  },
+  {
+    id: 'pix',
+    name: 'deposit',
+    title: 'Pix',
+    type: 'radio',
+  },
+  {
+    id: 'ticket',
+    name: 'deposit',
+    title: 'Boleto',
+    type: 'radio',
+  },
+];
+
 export default function Deposit() {
-  const [depositMethod, setDepositMethod] = React.useState('Cartão de Crédito');
+  const [depositMethod, setDepositMethod] = React.useState('Cartão de crédito');
   const [forms, setForms] = React.useState({
     depositValue: '',
     terms: false,
@@ -16,27 +37,6 @@ export default function Deposit() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const { userBalance, setUserBalance } = React.useContext(Context);
-
-  const depositRadioInputs = [
-    {
-      id: 'credit',
-      name: 'deposit',
-      title: 'Cartão de Crédito',
-      type: 'radio',
-    },
-    {
-      id: 'pix',
-      name: 'deposit',
-      title: 'Pix',
-      type: 'radio',
-    },
-    {
-      id: 'ticket',
-      name: 'deposit',
-      title: 'Boleto',
-      type: 'radio',
-    },
-  ];
 
   const handleChange = ({ target }) => {
     const { name } = target;
@@ -106,6 +106,7 @@ export default function Deposit() {
           {
             depositRadioInputs.map((input) => (
               <Input
+                key={input.id}
                 checked={depositMethod === input.title}
                 id={input.id}
                 name={input.name}
