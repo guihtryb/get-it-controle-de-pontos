@@ -39,6 +39,6 @@ export default function DepositModal({
 DepositModal.propTypes = {
   balanceValue: PropTypes.number.isRequired,
   depositMethod: PropTypes.string.isRequired,
-  depositValue: PropTypes.number.isRequired,
+  depositValue: PropTypes.string.isRequired,
   setDepositDone: PropTypes.func.isRequired,
 };
