@@ -108,3 +108,8 @@
   width: 120px;
   margin: auto;
 }
+
+.error-message {
+  text-align: center;
+  color: red;
+}

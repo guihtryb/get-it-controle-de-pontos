@@ -40,7 +40,7 @@ export default function Deposit() {
     formatedValue = Number(formatedValue);
 
     if (!formatedValue) {
-      setErrorMessage('Digite um valor maior que 0 para depósto');
+      setErrorMessage('Digite um valor maior que 0 para depósito!');
       throw Error();
     }
     setErrorMessage('');
@@ -112,14 +112,14 @@ export default function Deposit() {
           <button type="submit" onClick={(e) => handleClick(e, depositValue)} className="submit-btn">
             Depositar
           </button>
-        </form>
-        {
+          {
           errorMessage && (
           <p className="error-message">
             { errorMessage }
           </p>
           )
         }
+        </form>
         {
           isLoading && (<p>Efetuando depósito...</p>)
         }
