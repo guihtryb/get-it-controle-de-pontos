@@ -25,7 +25,7 @@ const pageComponents = {
         <GetItLogo />
         <div className="user-infos-container">
           <HeaderUserInfo title="Seus pontos:" info={(getUserPoints()).toString()} />
-          <HeaderUserInfo title="Seu saldo:" info={`R$ ${userBalance.toPrecision(2)}`} />
+          <HeaderUserInfo title="Seu saldo:" info={`R$ ${userBalance}`} />
         </div>
         <nav>
           <ul className="nav-list">
