@@ -129,6 +129,7 @@ export default function Deposit() {
             balanceValue={userBalance}
             depositMethod={depositMethod}
             depositValue={depositValue}
+            setDepositDone={setDepositDone}
           />
           )
         }

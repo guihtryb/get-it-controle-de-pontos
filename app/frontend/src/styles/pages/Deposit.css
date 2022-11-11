@@ -58,4 +58,53 @@
   padding: 16px 20px;
   transition: all ease 0.2s;
   margin: 20px auto;
+  width: 120px;
+}
+
+.deposit-modal-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deposit-modal {
+  background: #FFF;
+  border-radius: 6px;
+  border: 10px solid #8f14e4;
+  box-shadow: 0 0 0 10px #FFF;
+  box-sizing: border-box;
+  height: fit-content;
+  margin: auto;
+  padding: 20px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.deposit-modal ul li {
+  margin: auto;
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-conclude {
+  background-color: #8f14e4;
+  border-radius: 6px;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 16px 20px;
+  transition: all ease 0.2s;
+  width: 120px;
+  margin: auto;
 }
