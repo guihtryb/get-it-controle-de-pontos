@@ -38,12 +38,6 @@ export default function Deposit() {
 
   const { userBalance, setUserBalance } = React.useContext(Context);
 
-  const handleChange = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    return target.type === 'radio' ? setDepositMethod(value) : setForms({ ...forms, [name]: value });
-  };
-
   const validateDepositValueInput = (value) => {
     const numberRegEx = /[.]?[0-9]/;
     let formatedValue = value;
@@ -68,7 +62,7 @@ export default function Deposit() {
       setErrorMessage('Digite um valor maior que 0 para depósito!');
       throw Error();
     }
-    setErrorMessage('');
+    setErrorMessage(null);
     return Number(formatedValue);
   };
 
@@ -81,13 +75,19 @@ export default function Deposit() {
     }
   };
 
+  const handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    return target.type === 'radio' ? setDepositMethod(value) : setForms({ ...forms, [name]: value });
+  };
+
   const handleSubmit = (e, value) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       depositValueOnUserAccount(value);
       setDepositDone(true);
-      setForms({ depositValue: '', terms: false });
+      setForms({ ...forms, terms: false });
     } catch (error) {
       setDepositDone(false);
     } finally {

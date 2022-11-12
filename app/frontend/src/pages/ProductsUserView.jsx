@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import ProductsPageTitle from '../components/ProductsPageTitle';
@@ -9,7 +9,7 @@ import '../styles/pages/ProductsUserView.css';
 function ProductsUserView() {
   const userViewTitle = 'Ofertas disponíveis:';
 
-  const { products } = useContext(Context);
+  const { products } = React.useContext(Context);
 
   return (
     <>

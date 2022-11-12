@@ -38,6 +38,7 @@
   margin: .3rem 0;
 }
 
+
 .get-it-points-btn, .buy-btn {
   background-color: #fcba2e;
   border-radius: 6px;
@@ -48,13 +49,20 @@
   margin-top: .8rem;
   padding: 6px 0;
   transition: all ease .3s;
-  width: 80%;
+  width: 100%;
 }
 
 .buy-btn {
   margin-bottom: 1rem;
   background-color: #8f14e4;
   color: #FFF;
+}
+
+.get-it-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
 }
 
 .tooltip {

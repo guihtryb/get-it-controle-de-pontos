@@ -8,6 +8,7 @@ import ProductsAdminView from './pages/ProductsAdminView';
 import './styles/App.css';
 import Cart from './pages/Cart';
 import Deposit from './pages/Deposit';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/user/cart" component={Cart} />
         <Route path="/user/deposit" component={Deposit} />
         <Route path="/admin/products" component={ProductsAdminView} />
+        <Route path="/user/product/:id" render={({ match: { params: { id } } }) => (<ProductDetails id={id} />)} />
       </Switch>
     </Provider>
   );
