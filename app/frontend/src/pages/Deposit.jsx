@@ -87,12 +87,16 @@ export default function Deposit() {
     try {
       depositValueOnUserAccount(value);
       setDepositDone(true);
-      setForms({ ...forms, terms: false });
     } catch (error) {
       setDepositDone(false);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleDepositDone = () => {
+    setForms({ depositValue: '', terms: false });
+    setDepositDone(false);
   };
 
   return (
@@ -154,7 +158,7 @@ export default function Deposit() {
             balanceValue={userBalance}
             depositMethod={depositMethod}
             depositValue={forms.depositValue}
-            setDepositDone={setDepositDone}
+            handleDepositDone={handleDepositDone}
           />
           )
         }
