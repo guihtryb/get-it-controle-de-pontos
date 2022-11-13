@@ -4,20 +4,35 @@ import React from 'react';
 export default function AttributeButton({ attributeName, item }) {
   return (
     attributeName === 'cores' ? (
-      <button
-        key={item}
-        type="button"
+      <label
+        htmlFor={`color-${item}`}
+        className="color-input-label"
         style={{ backgroundColor: item }}
       >
-        {' '}
-      </button>
+        <input
+          className="color-input"
+          id={`color-${item}`}
+          key={item}
+          name="color"
+          type="radio"
+        />
+        <span />
+      </label>
+
     ) : (
-      <button
-        key={item}
-        type="button"
+      <label
+        htmlFor={`item-${item}`}
+        className="attribute-input-label"
       >
-        {item}
-      </button>
+        <input
+          className="attribute-input"
+          id={`item-${item}`}
+          key={item}
+          name={attributeName}
+          type="radio"
+        />
+        <span>{item}</span>
+      </label>
     ));
 }
 

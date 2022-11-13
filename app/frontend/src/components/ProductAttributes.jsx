@@ -4,9 +4,10 @@ import AttributeButton from './AttributeButton';
 
 export default function ProductAttributes({ name, data }) {
   return (
-    <div key={name}>
-      <h2 className="attribute-name">{`${name} disponíveis:`}</h2>
-      {
+    <div key={name} className="attributes-container">
+      <h2 className="attribute-name">{`${name} disponíveis`}</h2>
+      <div className="attributes">
+        {
         data && data.map(
           (item) => (
             <AttributeButton
@@ -17,6 +18,7 @@ export default function ProductAttributes({ name, data }) {
           ),
         )
       }
+      </div>
     </div>
   );
 }

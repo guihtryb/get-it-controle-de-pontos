@@ -4,6 +4,7 @@ import BuyForm from '../components/BuyForm';
 import Header from '../components/Header';
 import ProductAttributes from '../components/ProductAttributes';
 import Context from '../context/Context';
+import '../styles/pages/ProductDetails.css';
 
 export default function ProductDetails({ id }) {
   const [product, setProduct] = React.useState({});
@@ -28,13 +29,16 @@ export default function ProductDetails({ id }) {
   return (
     <>
       <Header page="userView" />
-      <main>
+
+      <main className="product-details-main">
+
         <div className="details-col-1">
           <img src={product.image} alt={`${product.title} preview`} />
         </div>
 
         <div className="details-col-2">
           <h1>{ product.title }</h1>
+          <h2>{ `R$ ${product.price}` }</h2>
           {
             product.attributes && product.attributes.map(
               (attribute) => (
@@ -49,6 +53,7 @@ export default function ProductDetails({ id }) {
 
           <h2>Método de pagamento:</h2>
           <BuyForm />
+
         </div>
       </main>
     </>

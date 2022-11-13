@@ -1,0 +1,103 @@
+.product-details-main {
+  display: grid;
+  padding: 52px 48px;
+  grid-template-columns: 70vw 20vw;
+}
+
+.details-col-1 {
+  grid-column: 1;
+}
+
+.details-col-1 img {
+  object-fit: contain;
+  width: 80%;
+  max-height: 600px;
+  border-radius: 2rem;
+}
+
+.details-col-2 {
+  font-family: 'Nunito', 'sans-serif';
+  grid-column: 2;
+  width: fit-content;
+  margin-left: -120px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: start;
+}
+
+.attributes-container {
+  display: flex;
+  flex-direction: column;
+  height: 105px;
+}
+
+.attributes {
+  padding-left: 12px;
+  padding-top: 8px;
+  top: 2rem;
+  display: flex;
+  width: fit-content;
+}
+
+.attribute-name {
+  text-transform: capitalize;
+}
+
+.color-input-label, .attribute-input-label {
+  position: relative;
+  padding: 1.5rem;
+  margin-right: 8px;
+  border-radius: 25%;
+  cursor: pointer;
+}
+
+.attribute-input-label {
+  border-radius: 4px;
+  background-color: #ddd;
+}
+
+.color-input-label input[type="radio"], .attribute-input-label input[type="radio"] {
+  display: none;
+}
+
+.color-input-label input[type="radio"] {
+  display: none;
+}
+
+.color-input-label span {
+  transition: all ease 0.2s;
+  height: 48px;
+  width: 48px;
+  border-radius: 25%;
+  border: 2px solid #ddd;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.attribute-input-label span {
+  font-family: 'Nunito', 'sans-serif';
+  font-weight: 700;
+  transition: all ease 0.2s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 13px 0;
+  width: 48px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.color-input-label input[type="radio"]:checked ~ span {
+  display: block;
+  border: 2px solid #000;
+}
+
+.attribute-input-label input[type="radio"]:checked ~ span {
+  display: block;
+  background-color: #000;
+  color: #FFF;
+}
+

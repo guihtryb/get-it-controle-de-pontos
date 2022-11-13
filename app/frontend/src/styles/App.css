@@ -7,3 +7,7 @@
 #root {
   min-width: max-content;
 }
+
+html {
+  background-color: #eceaf3; 
+}
