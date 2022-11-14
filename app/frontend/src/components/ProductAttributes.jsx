@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import AttributeButton from './AttributeButton';
+import AttributeInput from './AttributeInput';
 
-export default function ProductAttributes({ name, data }) {
+export default function ProductAttributes({
+  name, data, onChange, values,
+}) {
   return (
     <div key={name} className="attributes-container">
       <h2 className="attribute-name">{`${name} disponíveis`}</h2>
@@ -10,10 +12,12 @@ export default function ProductAttributes({ name, data }) {
         {
         data && data.map(
           (item) => (
-            <AttributeButton
+            <AttributeInput
               key={item}
               attributeName={name}
               item={item}
+              onChange={onChange}
+              checked={values[name] === item}
             />
           ),
         )
@@ -26,4 +30,6 @@ export default function ProductAttributes({ name, data }) {
 ProductAttributes.propTypes = {
   data: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  values: PropTypes.shape({}).isRequired,
 };

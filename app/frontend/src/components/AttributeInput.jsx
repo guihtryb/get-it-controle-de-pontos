@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function AttributeButton({ attributeName, item }) {
+export default function AttributeInput({
+  attributeName, item, onChange, checked,
+}) {
   return (
     attributeName === 'cores' ? (
       <label
@@ -15,6 +17,9 @@ export default function AttributeButton({ attributeName, item }) {
           key={item}
           name="color"
           type="radio"
+          value={item}
+          onChange={onChange}
+          checked={checked}
         />
         <span />
       </label>
@@ -30,13 +35,18 @@ export default function AttributeButton({ attributeName, item }) {
           key={item}
           name={attributeName}
           type="radio"
+          onChange={onChange}
+          value={item}
+          checked={checked}
         />
         <span>{item}</span>
       </label>
     ));
 }
 
-AttributeButton.propTypes = {
+AttributeInput.propTypes = {
   attributeName: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };

@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import BuyFeedbackModal from '../components/BuyFeedbackModal';
 import BuyForm from '../components/BuyForm';
 import Header from '../components/Header';
-import ProductAttributes from '../components/ProductAttributes';
 import Context from '../context/Context';
 import '../styles/pages/ProductDetails.css';
 
 export default function ProductDetails({ id }) {
   const [product, setProduct] = React.useState({});
+  const [buyPaymentMethod, setBuyPaymentMethod] = React.useState('money');
+
   const { products } = React.useContext(Context);
 
-  React.useEffect(() => {
+  const getProduct = () => {
     const productDetails = products.find((productItem) => productItem.id === +id);
     setProduct(productDetails);
+  };
+
+  React.useEffect(() => {
+    getProduct();
   }, []);
 
   if (!product) {
@@ -38,24 +44,22 @@ export default function ProductDetails({ id }) {
 
         <div className="details-col-2">
           <h1>{ product.title }</h1>
-          <h2>{ `R$ ${product.price}` }</h2>
           {
-            product.attributes && product.attributes.map(
-              (attribute) => (
-                <ProductAttributes
-                  key={attribute.name}
-                  data={attribute.data}
-                  name={attribute.name}
-                />
-              ),
+            buyPaymentMethod === 'money' ? (<h2>{`R$ ${product.price}`}</h2>) : (<h2>{`Pts ${product.pricePoints}`}</h2>)
+          }
+          {
+            product.attributes && (
+              <BuyForm
+                attributes={product.attributes}
+                setBuyPaymentMethod={setBuyPaymentMethod}
+                buyPaymentMethod={buyPaymentMethod}
+              />
             )
           }
-
-          <h2>Método de pagamento:</h2>
-          <BuyForm />
-
         </div>
       </main>
+
+      <BuyFeedbackModal />
     </>
   );
 }

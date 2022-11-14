@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Context from './Context';
+import { getUserPoints } from '../utilis';
 import products from '../mocks/products';
 
 export default function Provider({ children }) {
@@ -12,6 +13,11 @@ export default function Provider({ children }) {
   const [askedToDelete, setAskedToDelete] = React.useState(false);
   const [askedToEdit, setAskedToEdit] = React.useState(false);
   const [userBalance, setUserBalance] = React.useState(0.25);
+  const [userPoints, setUserPoints] = React.useState(0);
+
+  React.useEffect(() => {
+    setUserPoints(getUserPoints());
+  }, []);
 
   const contextValue = React.useMemo(() => ({
     setShowLoginModal,
@@ -31,6 +37,8 @@ export default function Provider({ children }) {
     products,
     userBalance,
     setUserBalance,
+    userPoints,
+    setUserPoints,
   }));
 
   return (

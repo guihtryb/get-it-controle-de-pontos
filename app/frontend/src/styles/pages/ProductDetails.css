@@ -50,7 +50,6 @@
 .attributes-container {
   display: flex;
   flex-direction: column;
-  height: 105px;
 }
 
 .attributes {
@@ -120,5 +119,44 @@
   display: block;
   background-color: #000;
   color: #FFF;
+}
+
+.product-payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-payment-method {
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  background-color: #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+.details-buy-btn {
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: 'Nunito', 'sans-serif';
+  border: none;
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+
+.money {
+  color: #FFF;
+  background-color: #9763E3;
+}
+
+.money:hover, .points:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.points {
+  color: #000;
+  background-color: #F3B92C;
 }
 

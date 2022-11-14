@@ -41,7 +41,7 @@ const products = [
     attributes: [
       {
         name: 'cores',
-        data: ['black', 'orange', 'white', 'blue'],
+        data: ['orange', 'white', 'blue', 'black'],
       },
     ],
   },
@@ -70,6 +70,10 @@ const products = [
       {
         name: 'cores',
         data: ['black', 'white'],
+      },
+      {
+        name: 'memorias',
+        data: ['32GB', '64GB'],
       },
     ],
   },
