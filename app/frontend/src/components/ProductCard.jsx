@@ -59,30 +59,40 @@ function ProductCard({ product, index }) {
       >
         Ou
       </span>
-      <Link to={`/user/product/${product.id}`} className="get-it-link">
-        <button
-          className="buy-btn"
-          data-testid={`buy-btn-${index}`}
-          onMouseLeave={closeToolTip}
-          onMouseOver={showToolTip}
-          type="button"
-        >
-          R$
-          {' '}
-          { product.price }
-        </button>
-      </Link>
-      {' '}
-      <hr />
-      <GetItButton index={index} ableToGet={ableToGet} productId={product.id} />
-      <div
-        className="tooltip"
-        style={{ display: toolTip }}
+      <span
+        className="product-price"
       >
-        {` Essa compra retornará ${convert()} pontos`}
-      </div>
+        R$
+        {' '}
+        { product.price }
+      </span>
+
       {
-        role === 'admin' && (
+        role === 'user' ? (
+          <>
+            <Link to={`/user/product/${product.id}`} className="get-it-link">
+              <button
+                className="buy-btn"
+                data-testid={`buy-btn-${index}`}
+                onMouseLeave={closeToolTip}
+                onMouseOver={showToolTip}
+                type="button"
+              >
+                R$
+                {' '}
+                { product.price }
+              </button>
+            </Link>
+            <hr />
+            <GetItButton index={index} ableToGet={ableToGet} productId={product.id} />
+            <div
+              className="tooltip"
+              style={{ display: toolTip }}
+            >
+              {` Essa compra retornará ${convert()} pontos`}
+            </div>
+          </>
+        ) : (
           <div className="update-btns-container">
             <EditProductButton id={product.id} />
             <DeleteButton id={product.id} />
