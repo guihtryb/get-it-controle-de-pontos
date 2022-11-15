@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import BuyFeedbackModal from '../components/BuyFeedbackModal';
 import BuyForm from '../components/BuyForm';
 import Header from '../components/Header';
@@ -9,8 +10,13 @@ import '../styles/pages/ProductDetails.css';
 export default function ProductDetails({ id }) {
   const [product, setProduct] = React.useState({});
   const [buyPaymentMethod, setBuyPaymentMethod] = React.useState('money');
+  const [submitted, setSubmitted] = React.useState(false);
+  const [submittedMessage, setSubmittedMessage] = React.useState('');
+  const [feedBackBtnFunc, setFeedBackBtnFunc] = React.useState(() => {});
 
-  const { products } = React.useContext(Context);
+  const history = useHistory();
+
+  const { products, userPoints, userBalance } = React.useContext(Context);
 
   const getProduct = () => {
     const productDetails = products.find((productItem) => productItem.id === +id);
@@ -20,6 +26,52 @@ export default function ProductDetails({ id }) {
   React.useEffect(() => {
     getProduct();
   }, []);
+
+  const goToCart = () => history.push('/user/cart');
+
+  const goToDeposit = () => history.push('/user/deposit');
+
+  const buyWithMoney = () => {
+    setSubmittedMessage('Compra em dinheiro efetuada com sucesso!');
+    setFeedBackBtnFunc(() => goToCart);
+    setSubmitted(true);
+  };
+
+  const buyWithPoints = () => {
+    setSubmittedMessage('Compra em pontos efetuada com sucesso!');
+    setFeedBackBtnFunc(() => goToCart);
+    setSubmitted(true);
+  };
+
+  const notAbleToBuyWithMoney = () => {
+    setSubmittedMessage('Saldo insuficiente! Deseja realizar um depósito?');
+    setFeedBackBtnFunc(() => goToDeposit);
+    setSubmitted(true);
+  };
+
+  const notAbleToBuyWithPoints = () => {
+    setSubmittedMessage('Saldo de pontos insuficiente!');
+    setSubmitted(true);
+  };
+
+  const validateBuyWithMoney = () => {
+    if (userBalance >= product.price) {
+      return buyWithMoney();
+    }
+    return notAbleToBuyWithMoney();
+  };
+
+  const validateBuyWithPoints = () => {
+    if (userPoints >= product.pricePoints) {
+      return buyWithPoints();
+    }
+    return notAbleToBuyWithPoints();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    return buyPaymentMethod === 'money' ? validateBuyWithMoney() : validateBuyWithPoints();
+  };
 
   if (!product) {
     return (
@@ -50,6 +102,7 @@ export default function ProductDetails({ id }) {
           {
             product.attributes && (
               <BuyForm
+                onSubmit={handleSubmit}
                 attributes={product.attributes}
                 setBuyPaymentMethod={setBuyPaymentMethod}
                 buyPaymentMethod={buyPaymentMethod}
@@ -58,8 +111,12 @@ export default function ProductDetails({ id }) {
           }
         </div>
       </main>
-
-      <BuyFeedbackModal />
+      { submitted && (
+      <BuyFeedbackModal
+        message={submittedMessage}
+        handleClick={feedBackBtnFunc}
+      />
+      ) }
     </>
   );
 }
