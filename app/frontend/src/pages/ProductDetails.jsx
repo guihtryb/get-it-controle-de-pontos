@@ -12,7 +12,8 @@ export default function ProductDetails({ id }) {
   const [buyPaymentMethod, setBuyPaymentMethod] = React.useState('money');
   const [submitted, setSubmitted] = React.useState(false);
   const [submittedMessage, setSubmittedMessage] = React.useState('');
-  const [feedBackBtnFunc, setFeedBackBtnFunc] = React.useState(() => {});
+  const [feedbackBtnFunc, setFeedbackBtnFunc] = React.useState(() => {});
+  const [feedbackBtnText, setFeedbackBtnText] = React.useState('');
 
   const history = useHistory();
 
@@ -33,24 +34,28 @@ export default function ProductDetails({ id }) {
 
   const buyWithMoney = () => {
     setSubmittedMessage('Compra em dinheiro efetuada com sucesso!');
-    setFeedBackBtnFunc(() => goToCart);
+    setFeedbackBtnFunc(() => goToCart);
+    setFeedbackBtnText('Ver Carrinho');
     setSubmitted(true);
   };
 
   const buyWithPoints = () => {
     setSubmittedMessage('Compra em pontos efetuada com sucesso!');
-    setFeedBackBtnFunc(() => goToCart);
+    setFeedbackBtnFunc(() => goToCart);
+    setFeedbackBtnText('Ver Carrinho');
     setSubmitted(true);
   };
 
   const notAbleToBuyWithMoney = () => {
     setSubmittedMessage('Saldo insuficiente! Deseja realizar um depósito?');
-    setFeedBackBtnFunc(() => goToDeposit);
+    setFeedbackBtnText('Realizar depósito');
+    setFeedbackBtnFunc(() => goToDeposit);
     setSubmitted(true);
   };
 
   const notAbleToBuyWithPoints = () => {
     setSubmittedMessage('Saldo de pontos insuficiente!');
+    setFeedbackBtnText('Voltar');
     setSubmitted(true);
   };
 
@@ -114,7 +119,9 @@ export default function ProductDetails({ id }) {
       { submitted && (
       <BuyFeedbackModal
         message={submittedMessage}
-        handleClick={feedBackBtnFunc}
+        handleClick={feedbackBtnFunc}
+        btnText={feedbackBtnText}
+        setShowModal={setSubmitted}
       />
       ) }
     </>

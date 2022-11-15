@@ -160,3 +160,49 @@
   background-color: #F3B92C;
 }
 
+.buy-feedback-modal-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-feedback-modal {
+  background: #FFF;
+  border-radius: 6px;
+  border: 10px solid #8f14e4;
+  box-shadow: 0 0 0 10px #FFF;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 20px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.buy-feedback-modal .close {
+  background: #8f14e4;
+  border-radius: 50%;
+  border: 6px solid white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 700;
+  height: 60px;
+  position: absolute;
+  right: -40px;
+  top: -45px;
+  width: 60px;
+}
+
+.buy-feedback-message {
+  font-family: 'Nunito', 'sans-serif';
+  font-size: 24px;
+}
