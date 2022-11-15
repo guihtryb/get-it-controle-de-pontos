@@ -13,6 +13,7 @@ export default function Provider({ children }) {
   const [askedToEdit, setAskedToEdit] = React.useState(false);
   const [userBalance, setUserBalance] = React.useState(0.25);
   const [userPoints, setUserPoints] = React.useState(0);
+  const [cart, setCart] = React.useState([]);
 
   const contextValue = React.useMemo(() => ({
     setShowLoginModal,
@@ -34,6 +35,8 @@ export default function Provider({ children }) {
     setUserBalance,
     userPoints,
     setUserPoints,
+    cart,
+    setCart,
   }));
 
   return (

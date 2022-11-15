@@ -8,11 +8,9 @@ export default function BuyForm({
   setBuyPaymentMethod,
   attributes,
   onSubmit,
+  setAttributesForms,
+  attributesForms,
 }) {
-  const [attributesValues, setAttributesValues] = React.useState(
-    attributes.reduce((acc, curr) => ({ ...acc, [curr.name]: curr.data[0] }), {}),
-  );
-
   return (
     <form onSubmit={onSubmit} className="product-payment-form">
       {
@@ -22,11 +20,11 @@ export default function BuyForm({
                   key={attribute.name}
                   data={attribute.data}
                   name={attribute.name}
-                  onChange={(({ target }) => setAttributesValues({
-                    ...attributesValues,
+                  onChange={(({ target }) => setAttributesForms({
+                    ...attributesForms,
                     [attribute.name]: target.value,
                   }))}
-                  values={attributesValues}
+                  values={attributesForms}
                 />
               ),
             )
@@ -47,6 +45,10 @@ BuyForm.propTypes = {
   buyPaymentMethod: PropTypes.string.isRequired,
   setBuyPaymentMethod: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  setAttributesForms: PropTypes.func.isRequired,
+  attributesForms: PropTypes.shape({
+    cores: PropTypes.string,
+  }).isRequired,
   attributes: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.string),

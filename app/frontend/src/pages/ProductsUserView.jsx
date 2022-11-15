@@ -10,10 +10,10 @@ import { getUserPoints } from '../utilis';
 function ProductsUserView() {
   const userViewTitle = 'Ofertas disponíveis:';
 
-  const { products, setUserPoints } = React.useContext(Context);
+  const { products, setUserPoints, userPoints } = React.useContext(Context);
 
   React.useEffect(() => {
-    setUserPoints(getUserPoints());
+    if (!userPoints) setUserPoints(getUserPoints());
   }, []);
   return (
     <>
