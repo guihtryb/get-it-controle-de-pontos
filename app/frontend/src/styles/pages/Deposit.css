@@ -1,5 +1,4 @@
 .deposit-main {
-  background-color: #eceaf3;
   font-family: 'Nunito', 'sans-serif';
   min-height: 100vh;
   padding: 60px 30px;
@@ -79,7 +78,6 @@
   border: 10px solid #8f14e4;
   box-shadow: 0 0 0 10px #FFF;
   box-sizing: border-box;
-  height: fit-content;
   margin: auto;
   padding: 20px 40px;
   position: relative;
@@ -90,7 +88,7 @@
 
 .deposit-modal ul li {
   margin: auto;
-  width: 65%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
 }
@@ -105,8 +103,11 @@
   font-weight: 700;
   padding: 16px 20px;
   transition: all ease 0.2s;
-  width: 120px;
   margin: auto;
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
 }
 
 .error-message {

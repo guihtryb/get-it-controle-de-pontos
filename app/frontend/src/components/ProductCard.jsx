@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { getUserPoints, getUserRole } from '../utilis';
@@ -58,20 +59,22 @@ function ProductCard({ product, index }) {
       >
         Ou
       </span>
-      <button
-        className="buy-btn"
-        data-testid={`buy-btn-${index}`}
-        onMouseLeave={closeToolTip}
-        onMouseOver={showToolTip}
-        type="button"
-      >
-        R$
-        {' '}
-        { product.price }
-      </button>
+      <Link to={`/user/product/${product.id}`} className="get-it-link">
+        <button
+          className="buy-btn"
+          data-testid={`buy-btn-${index}`}
+          onMouseLeave={closeToolTip}
+          onMouseOver={showToolTip}
+          type="button"
+        >
+          R$
+          {' '}
+          { product.price }
+        </button>
+      </Link>
       {' '}
       <hr />
-      <GetItButton index={index} ableToGet={ableToGet} />
+      <GetItButton index={index} ableToGet={ableToGet} productId={product.id} />
       <div
         className="tooltip"
         style={{ display: toolTip }}

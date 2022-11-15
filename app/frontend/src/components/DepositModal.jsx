@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function DepositModal({
-  depositMethod, depositValue, balanceValue, setDepositDone,
+  depositMethod, depositValue, balanceValue, handleDepositDone,
 }) {
   return (
     <div className="deposit-modal-container">
@@ -30,7 +30,7 @@ export default function DepositModal({
             </span>
           </li>
         </ul>
-        <button className="btn-conclude" type="button" onClick={() => setDepositDone(false)}>Concluir</button>
+        <button className="btn-conclude" type="button" onClick={() => handleDepositDone(false)}>Concluir</button>
       </div>
     </div>
   );
@@ -39,6 +39,6 @@ export default function DepositModal({
 DepositModal.propTypes = {
   balanceValue: PropTypes.number.isRequired,
   depositMethod: PropTypes.string.isRequired,
-  depositValue: PropTypes.number.isRequired,
-  setDepositDone: PropTypes.func.isRequired,
+  depositValue: PropTypes.string.isRequired,
+  handleDepositDone: PropTypes.func.isRequired,
 };

@@ -1,16 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import ProductsPageTitle from '../components/ProductsPageTitle';
 import Context from '../context/Context';
 
 import '../styles/pages/ProductsUserView.css';
+import { getUserPoints } from '../utilis';
 
 function ProductsUserView() {
   const userViewTitle = 'Ofertas disponíveis:';
 
-  const { products } = useContext(Context);
+  const { products, setUserPoints } = React.useContext(Context);
 
+  React.useEffect(() => {
+    setUserPoints(getUserPoints());
+  }, []);
   return (
     <>
       <Header page="userView" />
