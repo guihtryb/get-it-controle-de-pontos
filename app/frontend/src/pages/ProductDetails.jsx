@@ -25,14 +25,13 @@ export default function ProductDetails({ id }) {
   const getProduct = () => {
     const productDetails = products.find((productItem) => productItem.id === +id);
     setProduct(productDetails);
+
+    setAttributesForms(productDetails
+      .attributes.reduce((acc, curr) => ({ ...acc, [curr.name]: curr.data[0] }), {}));
   };
 
   React.useEffect(() => {
     getProduct();
-    if (product.attributes) {
-      setAttributesForms(product
-        .attributes.reduce((acc, curr) => ({ ...acc, [curr.name]: curr.data[0] }), {}));
-    }
   }, []);
 
   const goToCart = () => history.push('/user/cart');
@@ -42,9 +41,10 @@ export default function ProductDetails({ id }) {
   const closeModal = () => setSubmitted(false);
 
   const buyWithMoney = () => {
+    const dateTime = new Date();
     const productItem = {
       ...product,
-      date: new Date().getDate,
+      date: `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()}`,
       attributesForms,
       buyPaymentMethod,
     };
@@ -63,9 +63,10 @@ export default function ProductDetails({ id }) {
   };
 
   const buyWithPoints = () => {
+    const dateTime = new Date();
     const productItem = {
       ...product,
-      date: new Date().getDate,
+      date: `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()}`,
       attributesForms,
       buyPaymentMethod,
     };
@@ -73,7 +74,6 @@ export default function ProductDetails({ id }) {
     setUserPoints(userPoints - product.pricePoints);
     setCart([...cart, productItem]);
 
-    setCart(...cart, productItem);
     setSubmittedMessage('Compra em pontos efetuada com sucesso!');
     setFeedbackBtnFunc(() => goToCart);
     setFeedbackBtnText('Ver Carrinho');
@@ -137,7 +137,14 @@ export default function ProductDetails({ id }) {
         <div className="details-col-2">
           <h1>{ product.title }</h1>
           {
-            buyPaymentMethod === 'money' ? (<h2>{`R$ ${product.price} + ${Math.round(product.price * 0.6)}pts`}</h2>) : (<h2>{`Pts ${product.pricePoints}`}</h2>)
+            buyPaymentMethod === 'money' ? (
+              <h2 className="price-info">
+                {`R$ ${product.price}`}
+                {' '}
+                <span className="points-converter">{`+${Math.round(product.price * 0.6)}pts`}</span>
+                {' '}
+              </h2>
+            ) : (<h2>{`Pts ${product.pricePoints}`}</h2>)
           }
           {
             product.attributes && (
