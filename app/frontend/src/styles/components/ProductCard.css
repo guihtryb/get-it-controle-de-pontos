@@ -31,11 +31,15 @@
   font-family: 'Nunito';
 }
 
-.product-price-points {
+.product-price-points, .product-price {
+  font-family: 'Nunito', 'sans-serif';
   font-weight: 700;
   font-size: 1.5rem;
-  color: #8f14e4;
   margin: .3rem 0;
+}
+
+.product-price-points {
+  color: #8f14e4;
 }
 
 
