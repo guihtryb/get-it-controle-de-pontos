@@ -9,6 +9,7 @@ import '../styles/pages/ProductDetails.css';
 
 export default function ProductDetails({ id }) {
   const [product, setProduct] = React.useState({});
+  const [attributesForms, setAttributesForms] = React.useState({});
   const [buyPaymentMethod, setBuyPaymentMethod] = React.useState('money');
   const [submitted, setSubmitted] = React.useState(false);
   const [submittedMessage, setSubmittedMessage] = React.useState('');
@@ -17,11 +18,16 @@ export default function ProductDetails({ id }) {
 
   const history = useHistory();
 
-  const { products, userPoints, userBalance } = React.useContext(Context);
+  const {
+    products, setUserPoints, userPoints, setUserBalance, userBalance, setCart, cart,
+  } = React.useContext(Context);
 
   const getProduct = () => {
     const productDetails = products.find((productItem) => productItem.id === +id);
     setProduct(productDetails);
+
+    setAttributesForms(productDetails
+      .attributes.reduce((acc, curr) => ({ ...acc, [curr.name]: curr.data[0] }), {}));
   };
 
   React.useEffect(() => {
@@ -35,13 +41,39 @@ export default function ProductDetails({ id }) {
   const closeModal = () => setSubmitted(false);
 
   const buyWithMoney = () => {
+    const dateTime = new Date();
+    const productItem = {
+      ...product,
+      date: `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()}`,
+      attributesForms,
+      buyPaymentMethod,
+    };
+
+    setUserBalance(((userBalance * 100) - (product.price * 100)) / 100);
+
+    setUserPoints(((userPoints * 100) + (Math.round(0.6 * product.price) * 100)) / 100);
+    setCart([...cart, productItem]);
+
     setSubmittedMessage('Compra em dinheiro efetuada com sucesso!');
+
     setFeedbackBtnFunc(() => goToCart);
     setFeedbackBtnText('Ver Carrinho');
+
     setSubmitted(true);
   };
 
   const buyWithPoints = () => {
+    const dateTime = new Date();
+    const productItem = {
+      ...product,
+      date: `${dateTime.getDate()}/${dateTime.getMonth()}/${dateTime.getFullYear()}`,
+      attributesForms,
+      buyPaymentMethod,
+    };
+
+    setUserPoints(userPoints - product.pricePoints);
+    setCart([...cart, productItem]);
+
     setSubmittedMessage('Compra em pontos efetuada com sucesso!');
     setFeedbackBtnFunc(() => goToCart);
     setFeedbackBtnText('Ver Carrinho');
@@ -105,7 +137,14 @@ export default function ProductDetails({ id }) {
         <div className="details-col-2">
           <h1>{ product.title }</h1>
           {
-            buyPaymentMethod === 'money' ? (<h2>{`R$ ${product.price}`}</h2>) : (<h2>{`Pts ${product.pricePoints}`}</h2>)
+            buyPaymentMethod === 'money' ? (
+              <h2 className="price-info">
+                {`R$ ${product.price}`}
+                {' '}
+                <span className="points-converter">{`+${Math.round(product.price * 0.6)}pts`}</span>
+                {' '}
+              </h2>
+            ) : (<h2>{`Pts ${product.pricePoints}`}</h2>)
           }
           {
             product.attributes && (
@@ -114,6 +153,8 @@ export default function ProductDetails({ id }) {
                 attributes={product.attributes}
                 setBuyPaymentMethod={setBuyPaymentMethod}
                 buyPaymentMethod={buyPaymentMethod}
+                setAttributesForms={setAttributesForms}
+                attributesForms={attributesForms}
               />
             )
           }

@@ -1,0 +1,47 @@
+.cart-main {
+  font-family: 'Nunito', 'sans-serif';
+  min-height: 100vh;
+  padding: 60px 30px;
+}
+
+
+.cart-item-card {
+  background-color: #c5c2d6;
+  display: flex;
+  font-family: 'Nunito', 'sans-serif';
+  border-radius: 16px;
+  gap: 12px;
+  padding: 16px;
+  min-width: 700px;
+  max-width: 50vw;
+  align-items: center;
+  margin-left: 80px;
+  margin-top: 24px;
+}
+
+.cart-item-card img {
+  object-fit: contain;
+  max-height: 140px;
+  border-radius: 16px;
+}
+
+.cart-item-infos {
+  display: flex;
+  height: 130px;
+  font-size: 18px;
+  gap: 40px;
+  flex: 1;
+}
+
+.infos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cart-attributes.attributes {
+  padding-top: 0;
+  margin-bottom: 8px;
+}
+
+

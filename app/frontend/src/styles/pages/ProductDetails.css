@@ -206,3 +206,18 @@
   font-family: 'Nunito', 'sans-serif';
   font-size: 24px;
 }
+
+.points-converter {
+  font-size: 16px;
+  border-radius: 6px;
+  background-color: #ccc;
+  padding: 8px;
+}
+
+.price-info {
+  display: flex;
+  height: 50px;
+  width: fit-content;
+  align-items: center;
+  gap: 16px;
+}

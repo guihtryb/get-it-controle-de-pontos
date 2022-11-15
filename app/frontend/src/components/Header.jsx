@@ -6,7 +6,6 @@ import LoginButton from './LoginButton';
 import LogOutButton from './LogOutButton';
 import RegisterProductButton from './RegisterProductButton';
 import HeaderUserInfo from './HeaderUserInfo';
-import { getUserPoints } from '../utilis';
 import NavLinkItem from './NavLinkItem';
 import Context from '../context/Context';
 
@@ -18,13 +17,13 @@ const pageComponents = {
     </>
   ),
   userView: () => {
-    const { userBalance } = React.useContext(Context);
+    const { userBalance, userPoints } = React.useContext(Context);
 
     return (
       <>
         <GetItLogo />
         <div className="user-infos-container">
-          <HeaderUserInfo title="Seus pontos:" info={(getUserPoints()).toString()} />
+          <HeaderUserInfo title="Seus pontos:" info={(userPoints).toString()} />
           <HeaderUserInfo title="Seu saldo:" info={`R$ ${userBalance}`} />
         </div>
         <nav>
