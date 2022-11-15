@@ -32,6 +32,8 @@ export default function ProductDetails({ id }) {
 
   const goToDeposit = () => history.push('/user/deposit');
 
+  const closeModal = () => setSubmitted(false);
+
   const buyWithMoney = () => {
     setSubmittedMessage('Compra em dinheiro efetuada com sucesso!');
     setFeedbackBtnFunc(() => goToCart);
@@ -56,6 +58,7 @@ export default function ProductDetails({ id }) {
   const notAbleToBuyWithPoints = () => {
     setSubmittedMessage('Saldo de pontos insuficiente!');
     setFeedbackBtnText('Voltar');
+    setFeedbackBtnFunc(() => closeModal);
     setSubmitted(true);
   };
 
